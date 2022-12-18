@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicAmbulance", "EpicAmbulance\EpicAmbulance.csproj", "{3DDDE6A1-D563-483B-AAEF-316DDAF927A7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DDDE6A1-D563-483B-AAEF-316DDAF927A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DDDE6A1-D563-483B-AAEF-316DDAF927A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DDDE6A1-D563-483B-AAEF-316DDAF927A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DDDE6A1-D563-483B-AAEF-316DDAF927A7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E19528B0-1C2A-4576-AE70-7E51A431B17A}
+	EndGlobalSection
+EndGlobal
