@@ -16,7 +16,8 @@ public class Booking
 
     public string Address { get; set; } = null!;
 
-    public int TpNumber { get; set; }
+    [MaxLength(10)]
+    public string TpNumber { get; set; } = null!;
 
     public double Latitude { get; set; }
 

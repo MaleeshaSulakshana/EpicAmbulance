@@ -86,8 +86,10 @@ namespace EpicAmbulance.Migrations
                         .HasMaxLength(16)
                         .HasColumnType("character varying(16)");
 
-                    b.Property<int>("TpNumber")
-                        .HasColumnType("integer");
+                    b.Property<string>("TpNumber")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
 
                     b.HasKey("Id");
 
@@ -127,8 +129,10 @@ namespace EpicAmbulance.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("TpNumber")
-                        .HasColumnType("integer");
+                    b.Property<string>("TpNumber")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
 
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uuid");
@@ -187,8 +191,10 @@ namespace EpicAmbulance.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("character varying(128)");
 
-                    b.Property<int>("TpNumber")
-                        .HasColumnType("integer");
+                    b.Property<string>("TpNumber")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
 
                     b.Property<int>("Type")
                         .HasColumnType("integer");
@@ -229,8 +235,10 @@ namespace EpicAmbulance.Migrations
                         .HasMaxLength(16)
                         .HasColumnType("character varying(16)");
 
-                    b.Property<int>("TpNumber")
-                        .HasColumnType("integer");
+                    b.Property<string>("TpNumber")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
 
                     b.HasKey("Id");
 
@@ -267,8 +275,10 @@ namespace EpicAmbulance.Migrations
                         .HasMaxLength(16)
                         .HasColumnType("character varying(16)");
 
-                    b.Property<int>("TpNumber")
-                        .HasColumnType("integer");
+                    b.Property<string>("TpNumber")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
 
                     b.HasKey("Id");
 
@@ -308,8 +318,10 @@ namespace EpicAmbulance.Migrations
                         .HasMaxLength(16)
                         .HasColumnType("character varying(16)");
 
-                    b.Property<int>("TpNumber")
-                        .HasColumnType("integer");
+                    b.Property<string>("TpNumber")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
 
                     b.HasKey("Id");
 

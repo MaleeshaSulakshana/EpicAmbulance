@@ -19,7 +19,7 @@ namespace EpicAmbulance.Migrations
                     Name = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
                     Type = table.Column<int>(type: "integer", nullable: false),
                     Address = table.Column<string>(type: "text", nullable: false),
-                    TpNumber = table.Column<int>(type: "integer", nullable: false),
+                    TpNumber = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -35,7 +35,7 @@ namespace EpicAmbulance.Migrations
                     Name = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
                     Address = table.Column<string>(type: "text", nullable: false),
                     Nic = table.Column<string>(type: "character varying(12)", maxLength: 12, nullable: false),
-                    TpNumber = table.Column<int>(type: "integer", nullable: false),
+                    TpNumber = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
                     Password = table.Column<string>(type: "character varying(16)", maxLength: 16, nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
@@ -52,7 +52,7 @@ namespace EpicAmbulance.Migrations
                     Name = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
                     Address = table.Column<string>(type: "text", nullable: false),
                     Nic = table.Column<string>(type: "character varying(12)", maxLength: 12, nullable: false),
-                    TpNumber = table.Column<int>(type: "integer", nullable: false),
+                    TpNumber = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
                     Email = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
                     Password = table.Column<string>(type: "character varying(16)", maxLength: 16, nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
@@ -92,7 +92,7 @@ namespace EpicAmbulance.Migrations
                     Name = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
                     Address = table.Column<string>(type: "text", nullable: false),
                     Nic = table.Column<string>(type: "character varying(12)", maxLength: 12, nullable: false),
-                    TpNumber = table.Column<int>(type: "integer", nullable: false),
+                    TpNumber = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
                     Password = table.Column<string>(type: "character varying(16)", maxLength: 16, nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     HospitalId = table.Column<Guid>(type: "uuid", nullable: false)
@@ -116,7 +116,7 @@ namespace EpicAmbulance.Migrations
                     Name = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
                     Address = table.Column<string>(type: "text", nullable: false),
                     Nic = table.Column<string>(type: "character varying(12)", maxLength: 12, nullable: false),
-                    TpNumber = table.Column<int>(type: "integer", nullable: false),
+                    TpNumber = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
                     Password = table.Column<string>(type: "character varying(16)", maxLength: 16, nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     HospitalId = table.Column<Guid>(type: "uuid", nullable: false),
@@ -147,7 +147,7 @@ namespace EpicAmbulance.Migrations
                     Details = table.Column<string>(type: "text", nullable: false),
                     HospitalId = table.Column<Guid>(type: "uuid", nullable: false),
                     Address = table.Column<string>(type: "text", nullable: false),
-                    TpNumber = table.Column<int>(type: "integer", nullable: false),
+                    TpNumber = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
                     Latitude = table.Column<double>(type: "double precision", nullable: false),
                     Longitude = table.Column<double>(type: "double precision", nullable: false),
                     Status = table.Column<bool>(type: "boolean", nullable: false),

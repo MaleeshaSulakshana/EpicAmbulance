@@ -1,4 +1,5 @@
 using EpicAmbulance.Database;
+using EpicAmbulance.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,10 @@ builder.Services.AddSwaggerGen();
 // Add database service
 builder.Services.AddDbContext<DataContext>(option => option.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
     b => b.MigrationsAssembly("EpicAmbulance")));
+
+// Add repositories
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAmbulanceRepository, AmbulanceRepository>();
 
 var app = builder.Build();
 

@@ -14,7 +14,8 @@ public class HospitalUser
     [MaxLength(12)]
     public string Nic { get; set; } = null!;
 
-    public int TpNumber { get; set; }
+    [MaxLength(10)]
+    public string TpNumber { get; set; } = null!;
 
     [MaxLength(16)]
     public string Password { get; set; } = null!;
