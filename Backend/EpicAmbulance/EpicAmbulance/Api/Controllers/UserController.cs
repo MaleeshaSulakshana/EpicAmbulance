@@ -50,6 +50,16 @@ namespace EpicAmbulance.Controllers
                 return BadRequest();
             }
 
+            if (model.TpNumber.Length != 10)
+            {
+                return BadRequest("Mobile number not valid");
+            }
+
+            if (model.Nic.Length != 10 || model.Nic.Length != 12)
+            {
+                return BadRequest("Invalid nic number");
+            }
+
             var existUser = _repository.GetByTpNumber(model.TpNumber);
             if (existUser != null)
             {
