@@ -7,7 +7,7 @@ namespace EpicAmbulance.Repositories
 
         User? Get(Guid id);
 
-        User? GetByTpNumber(string mobile);
+        User? GetByEmail(string email);
 
         IEnumerable<User> GetAll();
 

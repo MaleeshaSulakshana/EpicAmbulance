@@ -5,45 +5,45 @@ using Microsoft.AspNetCore.Mvc;
 namespace EpicAmbulance.Controllers
 {
     [ApiController]
-    [Route("users")]
-    public class UserController : ControllerBase
+    [Route("systemUsers")]
+    public class SystemUserController : ControllerBase
     {
-        private readonly IUserRepository _repository;
+        private readonly ISystemUserRepository _repository;
 
-        public UserController(IUserRepository userRepository)
+        public SystemUserController(ISystemUserRepository systemUserRepository)
         {
-            _repository = userRepository;
+            _repository = systemUserRepository;
         }
 
         [HttpGet]
-        public IEnumerable<UserModel> GetAll()
+        public IEnumerable<SystemUserModel> GetAll()
         {
-            var result = new List<UserModel>();
+            var result = new List<SystemUserModel>();
             var users = _repository.GetAll().AsEnumerable();
 
             foreach (var user in users)
             {
-                result.Add(new UserModel(user));
+                result.Add(new SystemUserModel(user));
             }
             return result;
         }
 
         [HttpGet]
         [Route("{id}")]
-        public ActionResult<UserModel> Get(Guid id)
+        public ActionResult<SystemUserModel> Get(Guid id)
         {
             var user = _repository.Get(id);
 
             if (user != null)
             {
-                return new UserModel(user);
+                return new SystemUserModel(user);
             }
 
             return NotFound();
         }
 
         [HttpPost]
-        public ActionResult<UserModel> Create(UserModel model)
+        public ActionResult<SystemUserModel> Create(SystemUserModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -60,19 +60,18 @@ namespace EpicAmbulance.Controllers
                 return BadRequest("Invalid nic number");
             }
 
-            var existUser = _repository.GetByEmail(model.Email);
+            var existUser = _repository.GetByNic(model.Nic);
             if (existUser != null)
             {
-                return Conflict("Email exists");
+                return Conflict("Nic exists");
             }
 
-            var user = new User()
+            var user = new SystemUser()
             {
                 Name = model.Name!,
                 Address = model.Address!,
                 Nic = model.Nic!,
                 TpNumber = model.TpNumber!,
-                Email = model.Email!,
                 Password = model.Password!
             };
 
@@ -82,7 +81,7 @@ namespace EpicAmbulance.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public ActionResult<UserModel> Put(Guid id, UserModel model)
+        public ActionResult<SystemUserModel> Put(Guid id, SystemUserModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -106,7 +105,7 @@ namespace EpicAmbulance.Controllers
 
         [HttpPut]
         [Route("{id}/psw")]
-        public ActionResult<UserModel> PutPsw(Guid id, UserModel model)
+        public ActionResult<SystemUserModel> PutPsw(Guid id, SystemUserModel model)
         {
             if (!ModelState.IsValid)
             {

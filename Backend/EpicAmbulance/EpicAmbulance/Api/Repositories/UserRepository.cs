@@ -20,12 +20,12 @@ namespace EpicAmbulance.Repositories
                 .FirstOrDefault(u => u.Id == id && u.IsDeleted == false);
         }
 
-        public User? GetByTpNumber(string mobile)
+        public User? GetByEmail(string email)
         {
             return _context.Users
                 .Include(c => c.Bookings)
                 .AsNoTracking()
-                .FirstOrDefault(u => u.TpNumber == mobile && u.IsDeleted == false);
+                .FirstOrDefault(u => u.Email == email && u.IsDeleted == false);
         }
 
         public IEnumerable<User> GetAll()

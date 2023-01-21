@@ -21,6 +21,7 @@ builder.Services.AddDbContext<DataContext>(option => option.UseNpgsql(configurat
 // Add repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAmbulanceRepository, AmbulanceRepository>();
+builder.Services.AddScoped<ISystemUserRepository, SystemUserRepository>();
 
 var app = builder.Build();
 
