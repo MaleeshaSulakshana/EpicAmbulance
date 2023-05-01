@@ -23,6 +23,19 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAmbulanceRepository, AmbulanceRepository>();
 builder.Services.AddScoped<ISystemUserRepository, SystemUserRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+builder.Services.AddScoped<IHospitalRepository, HospitalRepository>();
+
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("CorsPolicy",
+            builder =>
+            {
+                builder.WithOrigins(new string[] { "http://localhost:4200" }).AllowAnyMethod().AllowAnyHeader();
+            });
+        });
+}
 
 var app = builder.Build();
 
@@ -33,10 +46,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("CorsPolicy");
 
 app.Run();

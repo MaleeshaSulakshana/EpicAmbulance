@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EpicAmbulance.Controllers
 {
     [ApiController]
-    [Route("ambulances")]
+    [Route("api/ambulances")]
     public class AmbulanceController : ControllerBase
     {
         private readonly IAmbulanceRepository _repository;

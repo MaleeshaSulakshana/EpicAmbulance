@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EpicAmbulance.Controllers
 {
     [ApiController]
-    [Route("comments")]
+    [Route("api/comments")]
     public class CommentController : ControllerBase
     {
         private readonly ICommentRepository _repository;

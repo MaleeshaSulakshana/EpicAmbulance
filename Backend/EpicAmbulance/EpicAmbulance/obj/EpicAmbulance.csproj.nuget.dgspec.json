@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\External-Projects\\#NSBM\\2023\\Finals\\Ravindu\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance\\EpicAmbulance.csproj": {}
+    "D:\\External-Projects\\Ravidu-NSBM\\Project\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance\\EpicAmbulance.csproj": {}
   },
   "projects": {
-    "D:\\External-Projects\\#NSBM\\2023\\Finals\\Ravindu\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance.Database\\EpicAmbulance.Database.csproj": {
+    "D:\\External-Projects\\Ravidu-NSBM\\Project\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance.Database\\EpicAmbulance.Database.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\External-Projects\\#NSBM\\2023\\Finals\\Ravindu\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance.Database\\EpicAmbulance.Database.csproj",
+        "projectUniqueName": "D:\\External-Projects\\Ravidu-NSBM\\Project\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance.Database\\EpicAmbulance.Database.csproj",
         "projectName": "EpicAmbulance.Database",
-        "projectPath": "D:\\External-Projects\\#NSBM\\2023\\Finals\\Ravindu\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance.Database\\EpicAmbulance.Database.csproj",
+        "projectPath": "D:\\External-Projects\\Ravidu-NSBM\\Project\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance.Database\\EpicAmbulance.Database.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\External-Projects\\#NSBM\\2023\\Finals\\Ravindu\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance.Database\\obj\\",
+        "outputPath": "D:\\External-Projects\\Ravidu-NSBM\\Project\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance.Database\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -90,14 +90,14 @@
         }
       }
     },
-    "D:\\External-Projects\\#NSBM\\2023\\Finals\\Ravindu\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance\\EpicAmbulance.csproj": {
+    "D:\\External-Projects\\Ravidu-NSBM\\Project\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance\\EpicAmbulance.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\External-Projects\\#NSBM\\2023\\Finals\\Ravindu\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance\\EpicAmbulance.csproj",
+        "projectUniqueName": "D:\\External-Projects\\Ravidu-NSBM\\Project\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance\\EpicAmbulance.csproj",
         "projectName": "EpicAmbulance",
-        "projectPath": "D:\\External-Projects\\#NSBM\\2023\\Finals\\Ravindu\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance\\EpicAmbulance.csproj",
+        "projectPath": "D:\\External-Projects\\Ravidu-NSBM\\Project\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance\\EpicAmbulance.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\External-Projects\\#NSBM\\2023\\Finals\\Ravindu\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance\\obj\\",
+        "outputPath": "D:\\External-Projects\\Ravidu-NSBM\\Project\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -119,8 +119,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\External-Projects\\#NSBM\\2023\\Finals\\Ravindu\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance.Database\\EpicAmbulance.Database.csproj": {
-                "projectPath": "D:\\External-Projects\\#NSBM\\2023\\Finals\\Ravindu\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance.Database\\EpicAmbulance.Database.csproj"
+              "D:\\External-Projects\\Ravidu-NSBM\\Project\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance.Database\\EpicAmbulance.Database.csproj": {
+                "projectPath": "D:\\External-Projects\\Ravidu-NSBM\\Project\\EpicAmbulance\\Backend\\EpicAmbulance\\EpicAmbulance.Database\\EpicAmbulance.Database.csproj"
               }
             }
           }

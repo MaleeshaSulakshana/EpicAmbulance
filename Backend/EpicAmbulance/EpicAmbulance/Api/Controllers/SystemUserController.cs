@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EpicAmbulance.Controllers
 {
     [ApiController]
-    [Route("systemUsers")]
+    [Route("api/systemUsers")]
     public class SystemUserController : ControllerBase
     {
         private readonly ISystemUserRepository _repository;

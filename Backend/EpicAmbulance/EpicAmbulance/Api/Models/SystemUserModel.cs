@@ -33,6 +33,7 @@ namespace EpicAmbulance
         [MaxLength(12)]
         public string Nic { get; set; } = null!;
 
+        [Required]
         [MaxLength(10)]
         [MinLength(10)]
         public string TpNumber { get; set; } = null!;
