@@ -1,0 +1,194 @@
+<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+	<div>
+		<h4 class="mb-3 mb-md-0">Hospital Users</h4>
+	</div>
+	<div class="d-flex align-items-center flex-wrap text-nowrap">
+		<button class="btn btn-primary" (click)="openModal(lgAddModal)">+ Add Hospital Users</button>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-12 col-xl-12 grid-margin stretch-card">
+		<div class="card overflow-hidden">
+			<div class="card-body">
+				<div class="d-flex justify-content-between align-items-baseline mb-4 mb-md-3">
+					<h6 class="card-title mb-0"></h6>
+				</div>
+				<div class="row">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="mb-3">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" [(ngModel)]="filters.name" placeholder="Name">
+                            </div>
+                        </div>
+						<div class="col-sm-3">
+                            <div class="mb-3">
+                                <label class="form-label">NIC</label>
+                                <input type="text" class="form-control" [(ngModel)]="filters.nic" placeholder="NIC">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="flex-lg-row-reverse float-end d-flex align-items-center flex-wrap text-nowrap">
+                            <button class="mx-2 btn btn-dark" (click)="reset()">Reset</button>
+                            <button class="btn btn-primary" (click)="filter()">Filter</button>
+                        </div>
+                    </div>
+                </div>
+				<hr />
+
+				<div class="row align-items-start">
+					<div class="col-md-12">
+						<div class="table-responsive">
+							<ngx-datatable
+								class="bootstrap"
+								[rows]="hospitalUsers"
+								[loadingIndicator]="loadingIndicator"
+								[columnMode]="ColumnMode.force"
+								[footerHeight]="0"
+								rowHeight="auto"
+								[externalSorting]="false"
+							>
+
+								<ngx-datatable-column [sortable]="false" name="User Name" prop="name"></ngx-datatable-column>
+								<ngx-datatable-column [sortable]="false" name="NIC" prop="nic"></ngx-datatable-column>
+								<ngx-datatable-column [sortable]="false" name="Hospital" prop="hospital.name"></ngx-datatable-column>
+								<ngx-datatable-column [sortable]="false" name="Tp Number" prop="tpNumber"></ngx-datatable-column>
+
+								<ngx-datatable-column [sortable]="false" name="Action" prop="action">
+                                    <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex"
+                                                 let-value="value"
+                                                 let-group="group" let-rowHeight="rowHeight">
+                                        <button nz-button nzType="link" class="border" (click)="openModal(lgEditModal, row)"><i  class="feather icon-edit"></i></button>
+                                        <button nz-button nzType="link" class="border" (confirm)="deleteHospitalUser(row)" [swal]="{ title: 'Are you sure!',text:' you want to remove this...? This cannot be undone', showCancelButton: true }"
+                                                ><i  class="feather icon-trash"></i></button>
+
+                                    </ng-template>
+                                </ngx-datatable-column>
+
+							</ngx-datatable>
+							<div *ngIf="0 === hospitalUsers.length" class="my-2 ng-star-inserted text-black-50 text-center">
+								No data to display
+							</div>
+
+						</div>
+					</div>
+					<div class="col-md-5 d-flex justify-content-md-end"></div>
+				</div>
+				<div class="flot-wrapper"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--modal-->
+<!-- add -->
+<ng-template #lgAddModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Hospital User</h5>
+        <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
+    </div>
+    <form [formGroup]="form"  (submit)="saveData()" class="forms-sample ng-untouched ng-pristine ng-valid">
+        <div class="modal-body">
+            <div class="form-group col-span-12 sm:col-span-12">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name"
+                        required
+                        [(ngModel)]="name" name="name" formControlName="name">
+            </div>
+
+            <div class="form-group col-span-12 sm:col-span-12">
+                <label for="address">Address</label>
+                <textarea class="form-control" id="address" required
+                    [(ngModel)]="address" name="address" formControlName="address"></textarea>
+            </div>
+
+            <div class="form-group col-span-12 sm:col-span-12">
+                <label for="nic">NIC</label>
+                <input type="text" class="form-control" id="nic"
+                        required
+                        [(ngModel)]="nic" name="nic" formControlName="nic">
+            </div>
+
+            <div class="form-group col-span-12 sm:col-span-12">
+                <label for="tpNumber">TP Number</label>
+                <input type="text" (keypress)="numberOnly($event)" class="form-control" id="tpNumber"
+                        required
+                        [(ngModel)]="tpNumber" name="tpNumber" formControlName="tpNumber">
+            </div>
+
+            <div class="form-group col-span-12 sm:col-span-12">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password"
+                        required
+                        [(ngModel)]="password" name="password" formControlName="password">
+            </div>
+
+            <div class="form-group col-span-12 sm:col-span-12">
+                <label for="hospital">Hospital</label>
+                <select class="form-control" [(ngModel)]="hospital" formControlName="hospital">
+                    <option *ngFor="let hospitalDetail of hospitals" value="{{ hospitalDetail.id }}">{{ hospitalDetail.name }}</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.close('by: close button')">Close</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid" >Save</button>
+        </div>
+    </form>
+</ng-template>
+
+
+<!--modal-->
+<!-- edit -->
+<ng-template #lgEditModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Hospital User</h5>
+        <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
+    </div>
+    <form [formGroup]="editForm"  (submit)="saveData()" class="forms-sample ng-untouched ng-pristine ng-valid">
+        <div class="modal-body">
+            <div class="form-group col-span-12 sm:col-span-12">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="nameView"
+                        required
+                        [(ngModel)]="nameView" name="nameView" formControlName="nameView">
+            </div>
+
+            <div class="form-group col-span-12 sm:col-span-12">
+                <label for="address">Address</label>
+                <textarea class="form-control" id="addressView" required
+                    [(ngModel)]="addressView" name="addressView" formControlName="addressView"></textarea>
+            </div>
+
+            <div class="form-group col-span-12 sm:col-span-12">
+                <label for="nic">NIC</label>
+                <input type="text" class="form-control" id="nicView"
+                        required
+                        [(ngModel)]="nicView" name="nicView" formControlName="nicView">
+            </div>
+
+            <div class="form-group col-span-12 sm:col-span-12">
+                <label for="tpNumber">TP Number</label>
+                <input type="text" (keypress)="numberOnly($event)" class="form-control" id="tpNumberView"
+                        required
+                        [(ngModel)]="tpNumberView" name="tpNumberView" formControlName="tpNumberView">
+            </div>
+
+            <div class="form-group col-span-12 sm:col-span-12">
+                <label for="hospitalView">Hospital</label>
+                <select class="form-control" [(ngModel)]="hospitalView" formControlName="hospitalView">
+                    <option *ngFor="let hospitalDetail of hospitals" value="{{ hospitalDetail.id }}">{{ hospitalDetail.name }}</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.close('by: close button')">Close</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!editForm.valid" >Save</button>
+        </div>
+    </form>
+</ng-template>

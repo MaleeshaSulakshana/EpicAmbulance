@@ -1,0 +1,49 @@
+<div class="row w-100 mx-0 auth-page">
+  <div class="col-md-8 col-xl-6 mx-auto">
+    <div class="card">
+      <div class="row">
+        <div class="col-md-4 pe-md-0">
+          <div class="auth-side-wrapper" [ngStyle]="{ 'background-image': 'url(https://img.freepik.com/free-photo/blur-hospital_1203-7972.jpg?w=2000)' }">
+
+          </div>
+        </div>
+        <div class="col-md-8 ps-md-0">
+          <div class="auth-form-wrapper px-4 py-5">
+            <a routerLink="." class="nobleui-logo d-block mb-2">Epic Ambulance<span></span></a>
+            <h5 class="text-muted fw-normal mb-4">Welcome back! Log in to your account.</h5>
+            <form class="forms-sample" [formGroup]="form" (submit)="onLoggedin($event)">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Username</label>
+                <input type="email" formControlName="username" class="form-control" id="exampleInputEmail1" placeholder="" >
+                <p class="text-danger"
+                   *ngIf="form.get('username')?.touched  && form.get('username')?.hasError('required')">
+                  Username is required.</p>
+              </div>
+              <div class="mb-3">
+                <label  class="form-label">Password</label>
+                <div class="input-group">
+                  <input type="{{show ? 'text' :'password'}}" formControlName="password" class="form-control" placeholder="" >
+                  <div class="input-group-append">
+                    <span class="input-group-text p-0">
+                      <button class="btn P-0" (click)="eye($event)">
+                         <svg *ngIf="!show" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye-off"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                   <svg *ngIf="show" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+                <p class="text-danger"
+                   *ngIf="form.get('password')?.touched  && form.get('password')?.hasError('required')">
+                  Password is required.</p>
+              </div>
+              <div>
+                <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0" (click)="onLoggedin($event)">Login</button>
+              </div>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
