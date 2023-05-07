@@ -3,7 +3,7 @@ using EpicAmbulance.Database;
 
 namespace EpicAmbulance
 {
-    public class AddHospitalUserModel
+    public class AddAmbulanceCrewMemberModel
     {
         public Guid Id { get; set; }
 
@@ -30,24 +30,31 @@ namespace EpicAmbulance
         [Required]
         public Guid HospitalId { get; set; }
 
+        [Required]
+        public Guid AmbulanceId { get; set; }
+
     }
 
-    public class ViewEditHospitalUserModel
+    public class ViewEditAmbulanceCrewMemberModel
     {
-        public ViewEditHospitalUserModel()
+        public ViewEditAmbulanceCrewMemberModel()
         {
 
         }
 
-        public ViewEditHospitalUserModel(HospitalUser hospitalUser)
+        public ViewEditAmbulanceCrewMemberModel(AmbulanceCrewMember ambulanceCrewMember)
         {
-            Id = hospitalUser.Id;
-            Name = hospitalUser.Name;
-            Address = hospitalUser.Address;
-            Nic = hospitalUser.Nic;
-            TpNumber = hospitalUser.TpNumber;
-            HospitalId = hospitalUser.HospitalId;
-            Hospital = new HospitalModel(hospitalUser.Hospital);
+            Id = ambulanceCrewMember.Id;
+            Name = ambulanceCrewMember.Name;
+            Address = ambulanceCrewMember.Address;
+            Nic = ambulanceCrewMember.Nic;
+            TpNumber = ambulanceCrewMember.TpNumber;
+
+            HospitalId = ambulanceCrewMember.HospitalId;
+            Hospital = ambulanceCrewMember.Hospital != null ? new HospitalModel(ambulanceCrewMember.Hospital) : null;
+
+            AmbulanceId = ambulanceCrewMember.AmbulanceId;
+            Ambulance = ambulanceCrewMember.Ambulance != null ? new AmbulanceModel(ambulanceCrewMember.Ambulance) : null;
         }
 
         public Guid Id { get; set; }
@@ -73,5 +80,11 @@ namespace EpicAmbulance
 
         // Read only
         public HospitalModel? Hospital { get; set; }
+
+        [Required]
+        public Guid AmbulanceId { get; set; }
+
+        // Read only
+        public AmbulanceModel? Ambulance { get; set; }
     }
 }

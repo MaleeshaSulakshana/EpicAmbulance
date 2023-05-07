@@ -5,45 +5,45 @@ using Microsoft.AspNetCore.Mvc;
 namespace EpicAmbulance.Controllers
 {
     [ApiController]
-    [Route("api/systemUsers")]
-    public class SystemUserController : ControllerBase
+    [Route("api/hospitalUsers")]
+    public class HospitalUserController : ControllerBase
     {
-        private readonly ISystemUserRepository _repository;
+        private readonly IHospitalUserRepository _repository;
 
-        public SystemUserController(ISystemUserRepository systemUserRepository)
+        public HospitalUserController(IHospitalUserRepository hospitalUserRepository)
         {
-            _repository = systemUserRepository;
+            _repository = hospitalUserRepository;
         }
 
         [HttpGet]
-        public IEnumerable<ViewEditSystemUserModel> GetAll()
+        public IEnumerable<ViewEditHospitalUserModel> GetAll()
         {
-            var result = new List<ViewEditSystemUserModel>();
+            var result = new List<ViewEditHospitalUserModel>();
             var users = _repository.GetAll().AsEnumerable();
 
             foreach (var user in users)
             {
-                result.Add(new ViewEditSystemUserModel(user));
+                result.Add(new ViewEditHospitalUserModel(user));
             }
             return result;
         }
 
         [HttpGet]
         [Route("{id}")]
-        public ActionResult<ViewEditSystemUserModel> Get(Guid id)
+        public ActionResult<ViewEditHospitalUserModel> Get(Guid id)
         {
             var user = _repository.Get(id);
 
             if (user != null)
             {
-                return new ViewEditSystemUserModel(user);
+                return new ViewEditHospitalUserModel(user);
             }
 
             return NotFound();
         }
 
         [HttpPost]
-        public ActionResult<ViewEditSystemUserModel> Create(AddSystemUserModel model)
+        public ActionResult<ViewEditHospitalUserModel> Create(AddHospitalUserModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -67,13 +67,14 @@ namespace EpicAmbulance.Controllers
                 return Conflict("Nic exists");
             }
 
-            var user = new SystemUser()
+            var user = new HospitalUser()
             {
                 Name = model.Name!,
                 Address = model.Address!,
                 Nic = model.Nic!,
                 TpNumber = model.TpNumber!,
-                Password = model.Password!
+                Password = model.Password!,
+                HospitalId = model.HospitalId!,
             };
 
             _repository.Create(user);
@@ -82,7 +83,7 @@ namespace EpicAmbulance.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public ActionResult<ViewEditSystemUserModel> Put(Guid id, ViewEditSystemUserModel model)
+        public ActionResult<ViewEditHospitalUserModel> Put(Guid id, ViewEditHospitalUserModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -99,6 +100,7 @@ namespace EpicAmbulance.Controllers
             user.Address = model.Address!;
             user.Nic = model.Nic!;
             user.TpNumber = model.TpNumber!;
+            user.HospitalId = model.HospitalId!;
 
             _repository.Update(user);
             return Ok(Get(id));
@@ -106,7 +108,7 @@ namespace EpicAmbulance.Controllers
 
         // [HttpPut]
         // [Route("{id}/psw")]
-        // public ActionResult<ViewEditSystemUserModel> PutPsw(Guid id, ViewEditSystemUserModel model)
+        // public ActionResult<ViewEditHospitalUserModel> PutPsw(Guid id, ViewEditHospitalUserModel model)
         // {
         //     if (!ModelState.IsValid)
         //     {

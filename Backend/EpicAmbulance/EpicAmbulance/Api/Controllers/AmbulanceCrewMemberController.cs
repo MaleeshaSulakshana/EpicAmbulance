@@ -5,45 +5,46 @@ using Microsoft.AspNetCore.Mvc;
 namespace EpicAmbulance.Controllers
 {
     [ApiController]
-    [Route("api/systemUsers")]
-    public class SystemUserController : ControllerBase
+    [Route("api/ambulanceCrewMembers")]
+    public class AmbulanceCrewMemberController : ControllerBase
     {
-        private readonly ISystemUserRepository _repository;
 
-        public SystemUserController(ISystemUserRepository systemUserRepository)
+        private readonly IAmbulanceCrewMemberRepository _repository;
+
+        public AmbulanceCrewMemberController(IAmbulanceCrewMemberRepository AmbulanceCrewMemberRepository)
         {
-            _repository = systemUserRepository;
+            _repository = AmbulanceCrewMemberRepository;
         }
 
         [HttpGet]
-        public IEnumerable<ViewEditSystemUserModel> GetAll()
+        public IEnumerable<ViewEditAmbulanceCrewMemberModel> GetAll()
         {
-            var result = new List<ViewEditSystemUserModel>();
+            var result = new List<ViewEditAmbulanceCrewMemberModel>();
             var users = _repository.GetAll().AsEnumerable();
 
             foreach (var user in users)
             {
-                result.Add(new ViewEditSystemUserModel(user));
+                result.Add(new ViewEditAmbulanceCrewMemberModel(user));
             }
             return result;
         }
 
         [HttpGet]
         [Route("{id}")]
-        public ActionResult<ViewEditSystemUserModel> Get(Guid id)
+        public ActionResult<ViewEditAmbulanceCrewMemberModel> Get(Guid id)
         {
             var user = _repository.Get(id);
 
             if (user != null)
             {
-                return new ViewEditSystemUserModel(user);
+                return new ViewEditAmbulanceCrewMemberModel(user);
             }
 
             return NotFound();
         }
 
         [HttpPost]
-        public ActionResult<ViewEditSystemUserModel> Create(AddSystemUserModel model)
+        public ActionResult<ViewEditAmbulanceCrewMemberModel> Create(AddAmbulanceCrewMemberModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -67,13 +68,15 @@ namespace EpicAmbulance.Controllers
                 return Conflict("Nic exists");
             }
 
-            var user = new SystemUser()
+            var user = new AmbulanceCrewMember()
             {
                 Name = model.Name!,
                 Address = model.Address!,
                 Nic = model.Nic!,
                 TpNumber = model.TpNumber!,
-                Password = model.Password!
+                Password = model.Password!,
+                HospitalId = model.HospitalId!,
+                AmbulanceId = model.AmbulanceId!,
             };
 
             _repository.Create(user);
@@ -82,7 +85,7 @@ namespace EpicAmbulance.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public ActionResult<ViewEditSystemUserModel> Put(Guid id, ViewEditSystemUserModel model)
+        public ActionResult<ViewEditAmbulanceCrewMemberModel> Put(Guid id, ViewEditAmbulanceCrewMemberModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -99,6 +102,8 @@ namespace EpicAmbulance.Controllers
             user.Address = model.Address!;
             user.Nic = model.Nic!;
             user.TpNumber = model.TpNumber!;
+            user.HospitalId = model.HospitalId!;
+            user.AmbulanceId = model.AmbulanceId!;
 
             _repository.Update(user);
             return Ok(Get(id));
@@ -106,7 +111,7 @@ namespace EpicAmbulance.Controllers
 
         // [HttpPut]
         // [Route("{id}/psw")]
-        // public ActionResult<ViewEditSystemUserModel> PutPsw(Guid id, ViewEditSystemUserModel model)
+        // public ActionResult<ViewEditAmbulanceCrewMemberModel> PutPsw(Guid id, ViewEditAmbulanceCrewMemberModel model)
         // {
         //     if (!ModelState.IsValid)
         //     {

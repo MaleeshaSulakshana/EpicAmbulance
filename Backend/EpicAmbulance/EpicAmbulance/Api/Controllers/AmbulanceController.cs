@@ -16,14 +16,21 @@ namespace EpicAmbulance.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<AmbulanceModel> GetAll()
+        public IEnumerable<AmbulanceModel> GetAll([FromQuery(Name = "hospitalId")] Guid? hospitalId)
         {
             var result = new List<AmbulanceModel>();
             var ambulances = _repository.GetAll().AsEnumerable();
 
             foreach (var ambulance in ambulances)
             {
-                result.Add(new AmbulanceModel(ambulance));
+                if (hospitalId == null)
+                {
+                    result.Add(new AmbulanceModel(ambulance));
+                }
+                else if (hospitalId != null && ambulance.Hospital.Id == hospitalId)
+                {
+                    result.Add(new AmbulanceModel(ambulance));
+                }
             }
             return result;
         }
@@ -56,11 +63,25 @@ namespace EpicAmbulance.Controllers
                 return Conflict("Email exists");
             }
 
+            int type = (int)AmbulanceType.Small;
+            if (AmbulanceType.Small.ToString() == model.Type)
+            {
+                type = (int)AmbulanceType.Small;
+            }
+            else if (AmbulanceType.Normal.ToString() == model.Type)
+            {
+                type = (int)AmbulanceType.Normal;
+            }
+            else
+            {
+                type = (int)AmbulanceType.Large;
+            }
+
             var ambulance = new Ambulance()
             {
                 Id = model.Id!,
                 VehicleNo = model.VehicleNo!,
-                Type = model.Type!,
+                Type = (AmbulanceType)type,
                 AvailableStatus = (bool)(model.AvailableStatus != null ? model.AvailableStatus : true),
                 HospitalId = model.HospitalId!
             };
@@ -84,8 +105,22 @@ namespace EpicAmbulance.Controllers
                 return NotFound("Ambulance not found!");
             }
 
+            int type = (int)AmbulanceType.Small;
+            if (AmbulanceType.Small.ToString() == model.Type)
+            {
+                type = (int)AmbulanceType.Small;
+            }
+            else if (AmbulanceType.Normal.ToString() == model.Type)
+            {
+                type = (int)AmbulanceType.Normal;
+            }
+            else
+            {
+                type = (int)AmbulanceType.Large;
+            }
+
             ambulance.VehicleNo = model.VehicleNo!;
-            ambulance.Type = model.Type!;
+            ambulance.Type = (AmbulanceType)type;
 
             _repository.Update(ambulance);
             return Ok(Get(id));

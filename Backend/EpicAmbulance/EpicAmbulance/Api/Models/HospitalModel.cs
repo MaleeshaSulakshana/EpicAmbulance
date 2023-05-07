@@ -26,7 +26,7 @@ namespace EpicAmbulance
         public string Name { get; set; } = null!;
 
         [Required]
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         [Required]
         [MaxLength(128)]
