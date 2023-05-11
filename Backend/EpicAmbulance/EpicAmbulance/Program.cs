@@ -1,6 +1,10 @@
 using EpicAmbulance.Database;
 using EpicAmbulance.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +30,29 @@ builder.Services.AddScoped<IHospitalUserRepository, HospitalUserRepository>();
 builder.Services.AddScoped<IAmbulanceCrewMemberRepository, AmbulanceCrewMemberRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<IHospitalRepository, HospitalRepository>();
+
+// Adding Authentication
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+
+// Adding Jwt Bearer
+.AddJwtBearer(options =>
+{
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidAudience = configuration.GetConnectionString("JWT:ValidAudience"),
+        ValidIssuer = configuration.GetConnectionString("JWT:ValidIssuer"),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetConnectionString("JWT:SecretKey")!))
+    };
+});
 
 if (builder.Environment.IsDevelopment())
 {
