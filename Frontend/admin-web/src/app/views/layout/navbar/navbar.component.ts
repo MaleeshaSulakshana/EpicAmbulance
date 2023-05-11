@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Inject, Renderer2 } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -9,16 +9,17 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  name: string = "Test User";
-  email: string = "user@test.com";
+  name: string = "";
+  username: string = "";
+  hospital: string = "";
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private renderer: Renderer2,
     private router: Router
   ) { }
 
   ngOnInit(): void {
+    this.setUserDetailsOnDropDown();
   }
 
   /**
@@ -34,11 +35,21 @@ export class NavbarComponent implements OnInit {
    */
   onLogout(e: Event) {
     e.preventDefault();
-    localStorage.removeItem('isLoggedin');
-    localStorage.removeItem('permissions');
+    localStorage.clear();
 
     if (!localStorage.getItem('isLoggedin')) {
       this.router.navigate(['/auth/login']);
+    }
+  }
+
+  setUserDetailsOnDropDown() {
+    var userDetails = JSON.parse(localStorage.getItem("userDetails") || "");
+    if (userDetails != "") {
+
+      this.name = userDetails.name;
+      this.username = localStorage.getItem("userName") || "";
+      this.hospital = userDetails?.hospital?.name;
+
     }
   }
 
