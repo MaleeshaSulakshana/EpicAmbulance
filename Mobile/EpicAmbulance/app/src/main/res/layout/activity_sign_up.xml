@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg4"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".SignUpActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="30dp"
+                android:fontFamily="sans-serif-condensed-light"
+                android:gravity="center"
+                android:text="Sign Up"
+                android:textColor="@color/gray2"
+                android:textSize="30dp"
+                android:textAllCaps="true"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/white_background"
+                android:shadowColor="@color/gray2"
+                android:textColor="@color/gray2"
+                android:hint="Name"
+                android:textColorHint="@color/gray2"
+                android:inputType="textPersonName"/>
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/white_background"
+                android:shadowColor="@color/gray2"
+                android:textColor="@color/gray2"
+                android:hint="Email"
+                android:textColorHint="@color/gray2"
+                android:inputType="textEmailAddress"
+                app:passwordToggleEnabled="true"/>
+
+            <EditText
+                android:id="@+id/nic"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/white_background"
+                android:shadowColor="@color/gray2"
+                android:textColor="@color/gray2"
+                android:hint="NIC"
+                android:textColorHint="@color/gray2"
+                android:inputType="text"
+                app:passwordToggleEnabled="true"/>
+
+            <EditText
+                android:id="@+id/number"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/white_background"
+                android:shadowColor="@color/gray2"
+                android:textColor="@color/gray2"
+                android:hint="Mobile Number"
+                android:textColorHint="@color/gray2"
+                android:inputType="number"
+                app:passwordToggleEnabled="true"/>
+
+            <EditText
+                android:id="@+id/address"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/white_background"
+                android:shadowColor="@color/gray2"
+                android:textColor="@color/gray2"
+                android:hint="Address"
+                android:textColorHint="@color/gray2"
+                android:inputType="text|textMultiLine"/>
+
+            <EditText
+                android:id="@+id/psw"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/white_background"
+                android:shadowColor="@color/gray2"
+                android:textColor="@color/gray2"
+                android:hint="Password"
+                android:textColorHint="@color/gray2"
+                android:inputType="textPassword"/>
+
+            <Button
+                android:id="@+id/btnSignUp"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:background="@drawable/blue_background"
+                android:text="Sign Up"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                app:backgroundTint="@null"/>
+
+            <TextView
+                android:id="@+id/textLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:text="If you have account? Login"
+                android:textColor="@color/gray2"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

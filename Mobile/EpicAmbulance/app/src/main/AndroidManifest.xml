@@ -13,6 +13,21 @@
         android:theme="@style/Theme.EpicAmbulance"
         tools:targetApi="31">
         <activity
+            android:name=".User.PswChangeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".User.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".User.DashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignInActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
