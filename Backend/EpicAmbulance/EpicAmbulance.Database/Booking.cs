@@ -29,6 +29,10 @@ public class Booking
 
     public Ambulance Ambulance { get; set; } = null!;
 
+    public Guid UserId { get; set; }
+
+    public User User { get; set; } = null!;
+
     public List<Comment> Comments
     {
         get => _comments ?? (_comments = new List<Comment>());

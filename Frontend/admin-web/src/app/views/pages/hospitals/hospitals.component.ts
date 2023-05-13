@@ -25,6 +25,9 @@ export class HospitalsComponent implements OnInit {
   type: any;
   address: any;
   tpNumber: any;
+  latitude: any;
+  longitude: any;
+  mapUrl: any;
 
   selectedData: any = null;
 
@@ -32,7 +35,10 @@ export class HospitalsComponent implements OnInit {
     name: "",
     type: "",
     address: "",
-    tpNumber: ""
+    tpNumber: "",
+    latitude: "",
+    longitude: "",
+    mapUrl: ""
   };
 
   filters = {
@@ -58,6 +64,9 @@ export class HospitalsComponent implements OnInit {
       type: [this.selected.type, [Validators.required]],
       address: [this.selected.address, [Validators.required]],
       tpNumber: [this.selected.tpNumber, [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)]],
+      latitude: [this.selected.latitude, [Validators.required]],
+      longitude: [this.selected.longitude, [Validators.required]],
+      mapUrl: [this.selected.mapUrl, [Validators.required]],
     });
   }
 
@@ -70,6 +79,9 @@ export class HospitalsComponent implements OnInit {
       this.type = data.type;
       this.address = data.address;
       this.tpNumber = data.tpNumber;
+      this.latitude = data.latitude;
+      this.longitude = data.longitude;
+      this.mapUrl = data.mapUrl;
 
     } else {
 
@@ -134,7 +146,10 @@ export class HospitalsComponent implements OnInit {
         name: this.name,
         type: this.type,
         address: this.address,
-        tpNumber: this.tpNumber
+        tpNumber: this.tpNumber,
+        latitude: this.latitude,
+        longitude: this.longitude,
+        mapUrl: this.mapUrl
       }
 
       const res = await this.hospitalsService.createHospital(data);
@@ -159,7 +174,10 @@ export class HospitalsComponent implements OnInit {
         name: this.name,
         type: this.type,
         address: this.address,
-        tpNumber: this.tpNumber
+        tpNumber: this.tpNumber,
+        latitude: this.latitude,
+        longitude: this.longitude,
+        mapUrl: this.mapUrl
       }
 
       const res = await this.hospitalsService.updateHospital(this.selectedData.id, data);

@@ -122,9 +122,17 @@ public class SignInActivity extends AppCompatActivity {
 
                                 Toast.makeText(SignInActivity.this, "Sign In Successfully", Toast.LENGTH_SHORT).show();
 
-                                Intent intent = new Intent(SignInActivity.this, DashboardActivity.class);
-                                startActivity(intent);
-                                finish();
+                                if (userRole.equals("AppUser")) {
+                                    Intent intent = new Intent(SignInActivity.this, DashboardActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Intent intent = new Intent(SignInActivity.this, DashboardActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+
+
 
                             } else {
                                 Toast.makeText(SignInActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();

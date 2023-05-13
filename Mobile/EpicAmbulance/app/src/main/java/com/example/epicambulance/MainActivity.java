@@ -48,9 +48,17 @@ public class MainActivity extends AppCompatActivity {
             Preferences.LOGGED_USER_NAME = userName;
             Preferences.LOGGED_USER_TYPE = role;
 
-            Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
-            startActivity(intent);
-            finish();
+            if (role.equals("AppUser")) {
+                Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+
 
         } else {
 

@@ -11,4 +11,10 @@ public class API {
     //    User api
     public static final String USER_API = BASE_URL + "/api/users";
 
+    //    Hospitals api
+    public static final String HOSPITALS_API = BASE_URL + "/api/hospitals";
+
+    //    Bookings api
+    public static final String BOOKINGS_API = BASE_URL + "/api/bookings";
+
 }

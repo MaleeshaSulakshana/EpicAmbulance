@@ -1,6 +1,7 @@
 using EpicAmbulance.Database;
 using EpicAmbulance.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System.Device.Location;
 
 namespace EpicAmbulance.Controllers
 {
@@ -26,6 +27,35 @@ namespace EpicAmbulance.Controllers
                 result.Add(new HospitalModel(hospital));
             }
             return result;
+        }
+
+        [HttpGet]
+        [Route("search")]
+        public IEnumerable<HospitalModel> GetAllBySearch([FromQuery] HospitalGeoFilterQuery filter)
+        {
+            var result = new List<HospitalModel>();
+            var hospitals = _repository.GetAll().AsEnumerable();
+
+            GeoCoordinate? sCoord = null;
+            sCoord = new GeoCoordinate(filter.Latitude, filter.Longitude);
+
+            foreach (var hospital in hospitals)
+            {
+                double? distance = 0.0;
+                GeoCoordinate? eCoord = null;
+                if (hospital.Latitude != null && hospital.Longitude != null)
+                {
+                    eCoord = new GeoCoordinate((double)hospital.Latitude, (double)hospital.Longitude);
+                }
+
+                if (sCoord != null && eCoord != null)
+                {
+                    distance = sCoord.GetDistanceTo(eCoord);
+                }
+                result.Add(new HospitalModel(hospital, distance));
+            }
+
+            return result.OrderBy(h => h.DistanceInMeters);
         }
 
         [HttpGet]
@@ -72,7 +102,10 @@ namespace EpicAmbulance.Controllers
                 Name = model.Name!,
                 Type = (HospitalType)type,
                 Address = model.Address!,
-                TpNumber = model.TpNumber!
+                TpNumber = model.TpNumber!,
+                Latitude = model.Latitude!,
+                Longitude = model.Longitude!,
+                MapUrl = model.MapUrl!
             };
 
             _repository.Create(hospital);
@@ -108,6 +141,9 @@ namespace EpicAmbulance.Controllers
             hospital.Type = (HospitalType)type;
             hospital.Address = model.Address!;
             hospital.TpNumber = model.TpNumber!;
+            hospital.Latitude = model.Latitude!;
+            hospital.Longitude = model.Longitude!;
+            hospital.MapUrl = model.MapUrl!;
 
             _repository.Update(hospital);
             return Ok(Get(id));

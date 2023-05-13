@@ -62,3 +62,4 @@ D:\External-Projects\Ravidu-NSBM\Project\EpicAmbulance\Backend\EpicAmbulance\Epi
 D:\External-Projects\Ravidu-NSBM\Project\EpicAmbulance\Backend\EpicAmbulance\EpicAmbulance\obj\Debug\net6.0\EpicAmbulance.pdb
 D:\External-Projects\Ravidu-NSBM\Project\EpicAmbulance\Backend\EpicAmbulance\EpicAmbulance\obj\Debug\net6.0\EpicAmbulance.genruntimeconfig.cache
 D:\External-Projects\Ravidu-NSBM\Project\EpicAmbulance\Backend\EpicAmbulance\EpicAmbulance\obj\Debug\net6.0\ref\EpicAmbulance.dll
+D:\External-Projects\Ravidu-NSBM\Project\EpicAmbulance\Backend\EpicAmbulance\EpicAmbulance\bin\Debug\net6.0\System.Device.Portable.dll

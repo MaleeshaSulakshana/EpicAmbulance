@@ -130,6 +130,27 @@
                         [(ngModel)]="tpNumber" name="tpNumber" formControlName="tpNumber">
             </div>
 
+            <div class="form-group col-span-12 sm:col-span-12">
+                <label for="latitude">Latitude</label>
+                <input type="text" class="form-control" id="latitude"
+                        required
+                        [(ngModel)]="latitude" name="latitude" formControlName="latitude">
+            </div>
+
+            <div class="form-group col-span-12 sm:col-span-12">
+                <label for="longitude">Longitude</label>
+                <input type="text" class="form-control" id="longitude"
+                        required
+                        [(ngModel)]="longitude" name="longitude" formControlName="longitude">
+            </div>
+
+            <div class="form-group col-span-12 sm:col-span-12">
+                <label for="mapUrl">Map Url</label>
+                <input type="text" class="form-control" id="mapUrl"
+                        required
+                        [(ngModel)]="mapUrl" name="mapUrl" formControlName="mapUrl">
+            </div>
+
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="modal.close('by: close button')">Close</button>

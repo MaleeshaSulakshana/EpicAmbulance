@@ -4,4 +4,7 @@ export interface hospital {
     type?: string;
     address?: string;
     tpNumber?: string;
+    latitude?: number;
+    longitude?: number;
+    mapUrl?: string;
 }

@@ -24,6 +24,12 @@ public class Hospital
 
     public bool IsDeleted { get; set; }
 
+    public double? Latitude { get; set; }
+
+    public double? Longitude { get; set; }
+
+    public string? MapUrl { get; set; }
+
     public List<Ambulance> Ambulances
     {
         get => _ambulances ?? (_ambulances = new List<Ambulance>());

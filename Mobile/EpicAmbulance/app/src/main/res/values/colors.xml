@@ -15,4 +15,9 @@
 
     <color name="blue1">#1E17BA</color>
     <color name="blue2">#376AED</color>
+
+    <color name="dark_green">@android:color/holo_green_dark</color>
+
+    <color name="dark_red">@android:color/holo_red_dark</color>
+
 </resources>
