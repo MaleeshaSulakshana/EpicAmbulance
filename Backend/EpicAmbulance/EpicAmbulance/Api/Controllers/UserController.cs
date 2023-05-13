@@ -16,34 +16,34 @@ namespace EpicAmbulance.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<UserModel> GetAll()
+        public IEnumerable<ViewEditUserModel> GetAll()
         {
-            var result = new List<UserModel>();
+            var result = new List<ViewEditUserModel>();
             var users = _repository.GetAll().AsEnumerable();
 
             foreach (var user in users)
             {
-                result.Add(new UserModel(user));
+                result.Add(new ViewEditUserModel(user));
             }
             return result;
         }
 
         [HttpGet]
         [Route("{id}")]
-        public ActionResult<UserModel> Get(Guid id)
+        public ActionResult<ViewEditUserModel> Get(Guid id)
         {
             var user = _repository.Get(id);
 
             if (user != null)
             {
-                return new UserModel(user);
+                return new ViewEditUserModel(user);
             }
 
             return NotFound();
         }
 
         [HttpPost]
-        public ActionResult<UserModel> Create(UserModel model)
+        public ActionResult<ViewEditUserModel> Create(AddUserModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -55,7 +55,8 @@ namespace EpicAmbulance.Controllers
                 return BadRequest("Mobile number not valid");
             }
 
-            if (model.Nic.Length != 10 || model.Nic.Length != 12)
+            var nicLengths = new List<int> { 10, 12 };
+            if (!nicLengths.Contains(model.Nic.Length))
             {
                 return BadRequest("Invalid nic number");
             }
@@ -82,7 +83,7 @@ namespace EpicAmbulance.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public ActionResult<UserModel> Put(Guid id, UserModel model)
+        public ActionResult<ViewEditUserModel> Put(Guid id, ViewEditUserModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -106,7 +107,7 @@ namespace EpicAmbulance.Controllers
 
         [HttpPut]
         [Route("{id}/psw")]
-        public ActionResult<UserModel> PutPsw(Guid id, UserModel model)
+        public ActionResult<ViewEditUserModel> PutPsw(Guid id, ChangePasswordUserModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -127,7 +128,7 @@ namespace EpicAmbulance.Controllers
             user.Password = model.Password!;
 
             _repository.Update(user);
-            return Ok("Password update successfull");
+            return Ok("Password update successful");
         }
 
         [HttpDelete]

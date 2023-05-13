@@ -39,10 +39,14 @@ public class MainActivity extends AppCompatActivity {
     private void checkExistingSignIn() {
 
         String id = sharedPreferences.getString("id", "");
+        String userName = sharedPreferences.getString("userName", "");
+        String role = sharedPreferences.getString("role", "");
 
         if (!id.equals("")) {
 
             Preferences.LOGGED_USER_ID = id;
+            Preferences.LOGGED_USER_NAME = userName;
+            Preferences.LOGGED_USER_TYPE = role;
 
             Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
             startActivity(intent);
@@ -51,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
 
             Preferences.LOGGED_USER_ID = "";
+            Preferences.LOGGED_USER_NAME = "";
+            Preferences.LOGGED_USER_TYPE = "";
 
             Intent intent = new Intent(MainActivity.this, SignInActivity.class);
             startActivity(intent);

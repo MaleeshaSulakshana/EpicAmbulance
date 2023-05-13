@@ -92,7 +92,7 @@ public class SignUpActivity extends AppCompatActivity {
                 jsonBody.put("name", nameValue);
                 jsonBody.put("email", emailValue);
                 jsonBody.put("nic", nicValue);
-                jsonBody.put("number", numberValue);
+                jsonBody.put("tpNumber", numberValue);
                 jsonBody.put("address", addressValue);
                 jsonBody.put("password", pswValue);
 
@@ -102,36 +102,23 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
 
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
+                        Toast.makeText(SignUpActivity.this, "Sign Up Successfully", Toast.LENGTH_SHORT).show();
 
-                            String status = jsonObject.getString("status");
-                            String msg = jsonObject.getString("msg");
+                        name.setText("");
+                        email.setText("");
+                        nic.setText("");
+                        number.setText("");
+                        address.setText("");
+                        psw.setText("");
 
-                            Toast.makeText(SignUpActivity.this, msg, Toast.LENGTH_SHORT).show();
-
-                            if (status.equals("success")) {
-                                name.setText("");
-                                email.setText("");
-                                nic.setText("");
-                                number.setText("");
-                                address.setText("");
-                                psw.setText("");
-
-                                Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
-                                startActivity(intent);
-
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+                        startActivity(intent);
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
-                        Toast.makeText(SignUpActivity.this, "Some error occur" + error.toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(SignUpActivity.this, "Some error occur" + error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
                     }
                 }) {
                     @Override

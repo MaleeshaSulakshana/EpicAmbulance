@@ -5,11 +5,9 @@ namespace EpicAmbulance
     public class AuthModel
     {
         [Required]
-        [MaxLength(12)]
         public string UserName { get; set; } = null!;
 
         [Required]
-        [MaxLength(16)]
         public string Password { get; set; } = null!;
     }
 

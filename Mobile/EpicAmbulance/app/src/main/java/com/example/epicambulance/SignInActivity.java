@@ -16,9 +16,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.epicambulance.Classes.API;
+import com.example.epicambulance.Classes.JWTUtils;
 import com.example.epicambulance.Classes.Preferences;
 import com.example.epicambulance.User.DashboardActivity;
 
@@ -88,8 +90,8 @@ public class SignInActivity extends AppCompatActivity {
                 RequestQueue requestQueue = Volley.newRequestQueue(SignInActivity.this);
                 JSONObject jsonBody = new JSONObject();
 
-                jsonBody.put("email", emailValue);
-                jsonBody.put("psw", pswValue);
+                jsonBody.put("userName", emailValue);
+                jsonBody.put("password", pswValue);
 
                 final String requestBody = jsonBody.toString();
 
@@ -98,43 +100,46 @@ public class SignInActivity extends AppCompatActivity {
                     public void onResponse(String response) {
 
                         try {
-                            JSONObject jsonObject = new JSONObject(response);
+                            String JWTData = JWTUtils.decoded(response);
+                            if (JWTData != "") {
+                                JSONObject jsonObject = new JSONObject(JWTData);
 
-                            String status = jsonObject.getString("status");
-                            String msg = jsonObject.getString("msg");
-
-                            if (status.equals("success")) {
+                                String sub = jsonObject.getString("sub");
+                                String userRole = jsonObject.getString("userRole");
+                                String userName = jsonObject.getString("userName");
 
                                 email.setText("");
                                 psw.setText("");
 
-                                String id = jsonObject.getString("id");
-                                String name = jsonObject.getString("name");
+                                Preferences.LOGGED_USER_ID = sub;
+                                Preferences.LOGGED_USER_NAME = userName;
+                                Preferences.LOGGED_USER_TYPE = userRole;
 
-                                Preferences.LOGGED_USER_ID = id;
-                                Preferences.LOGGED_USER_NAME = name;
-
-                                editor.putString("id", id );
-                                editor.putString("name", name );
+                                editor.putString("id", sub);
+                                editor.putString("userName", userName);
+                                editor.putString("role", userRole);
                                 editor.commit();
+
+                                Toast.makeText(SignInActivity.this, "Sign In Successfully", Toast.LENGTH_SHORT).show();
 
                                 Intent intent = new Intent(SignInActivity.this, DashboardActivity.class);
                                 startActivity(intent);
                                 finish();
 
+                            } else {
+                                Toast.makeText(SignInActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                             }
 
-                            Toast.makeText(SignInActivity.this, msg, Toast.LENGTH_SHORT).show();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
                         }
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+//                        Toast.makeText(SignInActivity.this, "Some error occur" + error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignInActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
 
-                        Toast.makeText(SignInActivity.this, "Some error occur" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }) {
                     @Override

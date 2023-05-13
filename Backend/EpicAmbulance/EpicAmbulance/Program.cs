@@ -61,7 +61,7 @@ if (builder.Environment.IsDevelopment())
             options.AddPolicy("CorsPolicy",
             builder =>
             {
-                builder.WithOrigins(new string[] { "http://localhost:4200" }).AllowAnyMethod().AllowAnyHeader();
+                builder.WithOrigins(new string[] { "http://localhost:4200", "http://0.0.0.0:4200" }).AllowAnyMethod().AllowAnyHeader();
             });
         });
 }
