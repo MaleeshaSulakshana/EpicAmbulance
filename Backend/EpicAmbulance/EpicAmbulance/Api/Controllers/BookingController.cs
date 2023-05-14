@@ -12,18 +12,22 @@ namespace EpicAmbulance.Controllers
         private readonly IHospitalRepository _hospitalRepository;
         private readonly IUserRepository _userRepository;
         private readonly IAmbulanceCrewMemberRepository _ambulanceCrewMemberRepository;
+        private readonly IAmbulanceRepository _ambulanceRepository;
+
 
         public BookingController(
             IBookingRepository bookingRepository,
             IHospitalRepository hospitalRepository,
             IUserRepository userRepository,
-            IAmbulanceCrewMemberRepository ambulanceCrewMemberRepository
+            IAmbulanceCrewMemberRepository ambulanceCrewMemberRepository,
+            IAmbulanceRepository ambulanceRepository
             )
         {
             _bookingRepository = bookingRepository;
             _hospitalRepository = hospitalRepository;
             _userRepository = userRepository;
             _ambulanceCrewMemberRepository = ambulanceCrewMemberRepository;
+            _ambulanceRepository = ambulanceRepository;
         }
 
         [HttpGet]
@@ -77,7 +81,7 @@ namespace EpicAmbulance.Controllers
 
             if (ambulanceCrewMember == null)
             {
-                return (IEnumerable<BookingModel>)BadRequest("Invalid Crew Member.");
+                return result;
             }
 
             var bookings = _bookingRepository.GetAllByAmbulanceId(ambulanceCrewMember.AmbulanceId).AsEnumerable();
@@ -136,6 +140,9 @@ namespace EpicAmbulance.Controllers
                 return BadRequest("Invalid user.");
             }
 
+            var ambulance = _ambulanceRepository.Get(ambulanceId);
+            ambulance!.AvailableStatus = false;
+
             var booking = new Booking()
             {
                 Details = model.Details!,
@@ -144,19 +151,21 @@ namespace EpicAmbulance.Controllers
                 TpNumber = model.TpNumber!,
                 Latitude = model.Latitude!,
                 Longitude = model.Longitude!,
-                Status = false,
+                StatusType = StatusType.Pending,
                 AmbulanceId = ambulanceId!,
                 UserId = model.UserId!,
                 DateTime = DateTimeOffset.UtcNow,
             };
 
             _bookingRepository.Create(booking);
+            _ambulanceRepository.Update(ambulance);
+
             return Ok(Get(booking.Id));
         }
 
         [HttpPut]
-        [Route("{id}/status")]
-        public ActionResult PutStatusChange(Guid id)
+        [Route("{id}/status/ongoing")]
+        public ActionResult PutStatusChangeOngoing(Guid id)
         {
             var booking = _bookingRepository.Get(id);
             if (booking == null)
@@ -164,9 +173,30 @@ namespace EpicAmbulance.Controllers
                 return NotFound("Booking not found!");
             }
 
-            booking.Status = true;
+            booking.StatusType = StatusType.Ongoing;
 
             _bookingRepository.Update(booking);
+            return Ok(Get(id));
+        }
+
+        [HttpPut]
+        [Route("{id}/status/completed")]
+        public ActionResult PutStatusChangeCompleted(Guid id)
+        {
+            var booking = _bookingRepository.Get(id);
+            if (booking == null)
+            {
+                return NotFound("Booking not found!");
+            }
+
+            booking.StatusType = StatusType.Completed;
+
+            var ambulance = _ambulanceRepository.Get(booking.AmbulanceId);
+            ambulance!.AvailableStatus = true;
+
+            _bookingRepository.Update(booking);
+            _ambulanceRepository.Update(ambulance);
+
             return Ok(Get(id));
         }
 

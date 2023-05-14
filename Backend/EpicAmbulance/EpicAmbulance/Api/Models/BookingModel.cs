@@ -20,7 +20,7 @@ namespace EpicAmbulance
             TpNumber = booking.TpNumber;
             Latitude = booking.Latitude;
             Longitude = booking.Longitude;
-            Status = booking.Status == true ? "Completed" : "Pending";
+            Status = booking.StatusType.ToString();
             AmbulanceId = booking.AmbulanceId;
             Ambulance = booking.Ambulance != null ? new AmbulanceModel(booking.Ambulance) : null; ;
             UserId = booking.UserId;

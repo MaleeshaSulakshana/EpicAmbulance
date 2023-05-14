@@ -10,7 +10,7 @@
     tools:context=".Ambulance.AmbulanceDashboardActivity">
 
     <LinearLayout
-        android:id="@+id/btnHospitals"
+        android:id="@+id/btnBookings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -20,40 +20,16 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/ic_business"
-            app:tint="@android:color/holo_red_light"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hospitals"
-            android:textColor="@color/gray1"
-            android:textStyle="bold"
-            android:textSize="18dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/btnBookings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:orientation="vertical"
-        android:gravity="center">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
             android:src="@drawable/ic_bookmarks"
-            app:tint="@color/white"/>
+            app:tint="@android:color/holo_red_light"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bookings"
             android:textColor="@color/gray1"
-            android:textStyle="normal"
-            android:textSize="14dp"/>
+            android:textStyle="bold"
+            android:textSize="18dp"/>
 
     </LinearLayout>
 

@@ -23,7 +23,7 @@ public class Booking
 
     public double Longitude { get; set; }
 
-    public bool Status { get; set; }
+    public StatusType StatusType { get; set; }
 
     public Guid AmbulanceId { get; set; }
 
@@ -40,4 +40,11 @@ public class Booking
         get => _comments ?? (_comments = new List<Comment>());
         set => _comments = value;
     }
+}
+
+public enum StatusType
+{
+    Pending = 0,
+    Ongoing = 1,
+    Completed = 2
 }

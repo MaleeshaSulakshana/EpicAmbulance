@@ -317,6 +317,19 @@
                 android:textColor="@color/white"
                 app:backgroundTint="@null"/>
 
+            <Button
+                android:id="@+id/btnStatus"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/blue_background"
+                android:text="Change Status"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                app:backgroundTint="@null"
+                android:visibility="gone"/>
+
         </LinearLayout>
 
     </ScrollView>

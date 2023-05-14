@@ -1,9 +1,11 @@
 package com.example.epicambulance.Ambulance;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -168,6 +170,12 @@ class BookingAdapter extends ArrayAdapter<Booking> {
         TextView hospital = (TextView) convertView.findViewById(R.id.hospital);
         TextView date = (TextView) convertView.findViewById(R.id.date);
         TextView status = (TextView) convertView.findViewById(R.id.status);
+
+        if (!getItem(position).getStatus().equals("Pending")) {
+            status.setTextColor(ContextCompat.getColor(this.getContext(), R.color.dark_green));
+        } else {
+            status.setTextColor(ContextCompat.getColor(this.getContext(), R.color.dark_red));
+        }
 
         hospital.setText(getItem(position).getHospital());
         date.setText(getItem(position).getDateTime());

@@ -18,7 +18,7 @@ import com.example.epicambulance.User.ProfileActivity;
 
 public class AmbulanceDashboardActivity extends AppCompatActivity {
 
-    private LinearLayout btnHospitals, btnBookings, btnProfile, btnLogout;
+    private LinearLayout btnBookings, btnProfile, btnLogout;
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -28,7 +28,6 @@ public class AmbulanceDashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ambulance_dashboard);
 
-        btnHospitals = (LinearLayout) this.findViewById(R.id.btnHospitals);
         btnBookings = (LinearLayout) this.findViewById(R.id.btnBookings);
         btnProfile = (LinearLayout) this.findViewById(R.id.btnProfile);
         btnLogout = (LinearLayout) this.findViewById(R.id.btnLogout);
@@ -36,16 +35,6 @@ public class AmbulanceDashboardActivity extends AppCompatActivity {
 //        For shared preferences
         sharedPreferences = getSharedPreferences("Login", MODE_PRIVATE);
         editor = sharedPreferences.edit();
-
-        btnHospitals.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(AmbulanceDashboardActivity.this, HospitalsActivity.class);
-                startActivity(intent);
-
-            }
-        });
 
         btnBookings.setOnClickListener(new View.OnClickListener() {
             @Override
