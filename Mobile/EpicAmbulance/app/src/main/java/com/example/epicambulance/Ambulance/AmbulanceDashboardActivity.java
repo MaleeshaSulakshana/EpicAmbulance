@@ -51,7 +51,7 @@ public class AmbulanceDashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(AmbulanceDashboardActivity.this, BookingsActivity.class);
+                Intent intent = new Intent(AmbulanceDashboardActivity.this, AmbulanceBookingsActivity.class);
                 startActivity(intent);
 
             }

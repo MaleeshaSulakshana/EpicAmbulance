@@ -11,16 +11,19 @@ namespace EpicAmbulance.Controllers
         private readonly IBookingRepository _bookingRepository;
         private readonly IHospitalRepository _hospitalRepository;
         private readonly IUserRepository _userRepository;
+        private readonly IAmbulanceCrewMemberRepository _ambulanceCrewMemberRepository;
 
         public BookingController(
             IBookingRepository bookingRepository,
             IHospitalRepository hospitalRepository,
-            IUserRepository userRepository
+            IUserRepository userRepository,
+            IAmbulanceCrewMemberRepository ambulanceCrewMemberRepository
             )
         {
             _bookingRepository = bookingRepository;
             _hospitalRepository = hospitalRepository;
             _userRepository = userRepository;
+            _ambulanceCrewMemberRepository = ambulanceCrewMemberRepository;
         }
 
         [HttpGet]
@@ -65,11 +68,19 @@ namespace EpicAmbulance.Controllers
         }
 
         [HttpGet]
-        [Route("ambulance/{ambulanceId}")]
-        public IEnumerable<BookingModel> GetAllByAmbulanceId(Guid ambulanceId)
+        [Route("ambulanceUser/{ambulanceUserId}")]
+        public IEnumerable<BookingModel> GetAllByAmbulanceId(Guid ambulanceUserId)
         {
             var result = new List<BookingModel>();
-            var bookings = _bookingRepository.GetAllByAmbulanceId(ambulanceId).AsEnumerable();
+
+            var ambulanceCrewMember = _ambulanceCrewMemberRepository.Get(ambulanceUserId);
+
+            if (ambulanceCrewMember == null)
+            {
+                return (IEnumerable<BookingModel>)BadRequest("Invalid Crew Member.");
+            }
+
+            var bookings = _bookingRepository.GetAllByAmbulanceId(ambulanceCrewMember.AmbulanceId).AsEnumerable();
 
             foreach (var booking in bookings)
             {

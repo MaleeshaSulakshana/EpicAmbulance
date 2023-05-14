@@ -29,6 +29,15 @@
         android:theme="@style/Theme.EpicAmbulance"
         tools:targetApi="31">
         <activity
+            android:name=".Ambulance.AmbulanceBookingCommentsViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Ambulance.AmbulanceBookingDetailsViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Ambulance.AmbulanceBookingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".Ambulance.AmbulancePswChangeActivity"
             android:exported="false" />
         <activity

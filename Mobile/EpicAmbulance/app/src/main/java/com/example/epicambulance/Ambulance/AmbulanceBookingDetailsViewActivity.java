@@ -1,8 +1,9 @@
-package com.example.epicambulance.User;
+package com.example.epicambulance.Ambulance;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,26 +14,27 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.epicambulance.Classes.API;
 import com.example.epicambulance.R;
+import com.example.epicambulance.User.BookingCommentsViewActivity;
+import com.example.epicambulance.User.BookingDetailsViewActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class BookingDetailsViewActivity extends AppCompatActivity {
+public class AmbulanceBookingDetailsViewActivity extends AppCompatActivity {
 
     private TextView date, hospital, ambulance, user, status, contact, details, address;
-    private Button btnViewComments;
+    private Button btnViewComments, btnOpenLocation;
 
-    String id = "";
+    String id = "", latitude = "", longitude = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_booking_details_view);
+        setContentView(R.layout.activity_ambulance_booking_details_view);
 
         Intent project = getIntent();
         id = project.getStringExtra("id");
@@ -46,6 +48,7 @@ public class BookingDetailsViewActivity extends AppCompatActivity {
         details = (TextView) findViewById(R.id.details);
         address = (TextView) findViewById(R.id.address);
 
+        btnOpenLocation = (Button) findViewById(R.id.btnOpenLocation);
         btnViewComments = (Button) findViewById(R.id.btnViewComments);
 
         showDetails();
@@ -54,20 +57,38 @@ public class BookingDetailsViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(BookingDetailsViewActivity.this, BookingCommentsViewActivity.class);
+                Intent intent = new Intent(AmbulanceBookingDetailsViewActivity.this, AmbulanceBookingCommentsViewActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
 
             }
         });
 
+        btnOpenLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!latitude.equals("") && !longitude.equals("")) {
+                    String mapUrl = "https://www.google.com/maps/search/?api=1&query=" + latitude + "," + longitude + "";
+                    openBrowser(mapUrl);
+                } else {
+                    Toast.makeText(AmbulanceBookingDetailsViewActivity.this, "Location not available.",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+    private void openBrowser(String link)
+    {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+        startActivity(browserIntent);
     }
 
     private void showDetails() {
 
         String URL = API.BOOKINGS_API + "/" + id;
 
-        RequestQueue requestQueue = Volley.newRequestQueue(BookingDetailsViewActivity.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(AmbulanceBookingDetailsViewActivity.this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
@@ -93,6 +114,9 @@ public class BookingDetailsViewActivity extends AppCompatActivity {
                             String strDetails = (String) response.getString("details");
                             String strAddress = (String) response.getString("address");
 
+                            String strLatitude = (String) response.getString("latitude");
+                            String strLongitude = (String) response.getString("longitude");
+
                             date.setText(strDate);
                             hospital.setText(strHospital);
                             ambulance.setText(strAmbulance);
@@ -102,8 +126,11 @@ public class BookingDetailsViewActivity extends AppCompatActivity {
                             details.setText(strDetails);
                             address.setText(strAddress);
 
+                            latitude = strLatitude;
+                            longitude = strLongitude;
+
                         } catch (JSONException e) {
-                            Toast.makeText(BookingDetailsViewActivity.this, "Some error occur.",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AmbulanceBookingDetailsViewActivity.this, "Some error occur.",Toast.LENGTH_SHORT).show();
                             throw new RuntimeException(e);
                         }
                     }
@@ -111,7 +138,7 @@ public class BookingDetailsViewActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(BookingDetailsViewActivity.this, error.toString(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AmbulanceBookingDetailsViewActivity.this, error.toString(),Toast.LENGTH_SHORT).show();
                     }
                 }
 

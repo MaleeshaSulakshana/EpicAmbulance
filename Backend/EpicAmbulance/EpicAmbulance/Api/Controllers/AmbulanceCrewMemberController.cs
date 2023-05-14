@@ -11,9 +11,9 @@ namespace EpicAmbulance.Controllers
 
         private readonly IAmbulanceCrewMemberRepository _repository;
 
-        public AmbulanceCrewMemberController(IAmbulanceCrewMemberRepository AmbulanceCrewMemberRepository)
+        public AmbulanceCrewMemberController(IAmbulanceCrewMemberRepository ambulanceCrewMemberRepository)
         {
-            _repository = AmbulanceCrewMemberRepository;
+            _repository = ambulanceCrewMemberRepository;
         }
 
         [HttpGet]

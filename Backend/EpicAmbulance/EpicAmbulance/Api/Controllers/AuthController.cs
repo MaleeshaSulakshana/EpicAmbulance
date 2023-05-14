@@ -159,12 +159,12 @@ namespace EpicAmbulance.Controllers
 
             if (userId == null && isEmail == false)
             {
-                var hospitalUser = _ambulanceCrewMemberRepository.GetByNic(model.UserName);
-                if (hospitalUser != null)
+                var ambulanceUser = _ambulanceCrewMemberRepository.GetByNic(model.UserName);
+                if (ambulanceUser != null)
                 {
-                    if (hospitalUser.Password == model.Password)
+                    if (ambulanceUser.Password == model.Password)
                     {
-                        userId = hospitalUser.Id;
+                        userId = ambulanceUser.Id;
                         userRole = "AmbulanceCrewMember";
                         userName = model.UserName;
                         permissions.Add("ambulanceCrewMember");
