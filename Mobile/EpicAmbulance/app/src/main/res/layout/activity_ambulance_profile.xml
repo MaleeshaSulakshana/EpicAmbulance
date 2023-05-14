@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg4"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Ambulance.AmbulanceProfileActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="30dp"
+                android:fontFamily="sans-serif-condensed-light"
+                android:gravity="center"
+                android:text="Profile"
+                android:textColor="@color/gray2"
+                android:textSize="30dp"
+                android:textAllCaps="true"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/white_background"
+                android:shadowColor="@color/gray2"
+                android:textColor="@color/gray2"
+                android:hint="Name"
+                android:textColorHint="@color/gray2"
+                android:inputType="textPersonName"
+                android:editable="false"/>
+
+            <EditText
+                android:id="@+id/nic"
+                android:enabled="false"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/white_background"
+                android:shadowColor="@color/gray2"
+                android:textColor="@color/gray2"
+                android:hint="NIC"
+                android:textColorHint="@color/gray2"
+                android:inputType="text"
+                app:passwordToggleEnabled="true"
+                android:editable="false"/>
+
+            <EditText
+                android:id="@+id/number"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/white_background"
+                android:shadowColor="@color/gray2"
+                android:textColor="@color/gray2"
+                android:hint="Mobile Number"
+                android:textColorHint="@color/gray2"
+                android:inputType="number"
+                app:passwordToggleEnabled="true"
+                android:editable="false"/>
+
+            <EditText
+                android:id="@+id/address"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/white_background"
+                android:shadowColor="@color/gray2"
+                android:textColor="@color/gray2"
+                android:hint="Address"
+                android:textColorHint="@color/gray2"
+                android:inputType="text|textMultiLine"
+                android:editable="false"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="sans-serif-condensed-light"
+                android:gravity="center"
+                android:text="Hospital"
+                android:textColor="@color/gray2"
+                android:textSize="20dp"
+                android:textAllCaps="true"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/hospitalName"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/white_background"
+                android:shadowColor="@color/gray2"
+                android:textColor="@color/gray2"
+                android:hint="Name"
+                android:textColorHint="@color/gray2"
+                android:inputType="text"
+                android:editable="false"/>
+
+            <EditText
+                android:id="@+id/hospitalType"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/white_background"
+                android:shadowColor="@color/gray2"
+                android:textColor="@color/gray2"
+                android:hint="Type"
+                android:textColorHint="@color/gray2"
+                android:inputType="text"
+                android:editable="false"/>
+
+            <EditText
+                android:id="@+id/hospitalAddress"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/white_background"
+                android:shadowColor="@color/gray2"
+                android:textColor="@color/gray2"
+                android:hint="Address"
+                android:textColorHint="@color/gray2"
+                android:inputType="text|textMultiLine"
+                android:editable="false"/>
+
+            <EditText
+                android:id="@+id/hospitalNumber"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/white_background"
+                android:shadowColor="@color/gray2"
+                android:textColor="@color/gray2"
+                android:hint="Number"
+                android:textColorHint="@color/gray2"
+                android:inputType="text"/>
+
+            <ImageView
+                android:id="@+id/showLocation"
+                android:layout_marginTop="10dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_location_on"
+                app:tint="@color/blue2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="sans-serif-condensed-light"
+                android:gravity="center"
+                android:text="Ambulance"
+                android:textColor="@color/gray2"
+                android:textSize="20dp"
+                android:textAllCaps="true"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/ambulanceNo"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/white_background"
+                android:shadowColor="@color/gray2"
+                android:textColor="@color/gray2"
+                android:hint="Vehicle No"
+                android:textColorHint="@color/gray2"
+                android:inputType="text"
+                android:editable="false"/>
+
+            <EditText
+                android:id="@+id/ambulanceType"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/white_background"
+                android:shadowColor="@color/gray2"
+                android:textColor="@color/gray2"
+                android:hint="Type"
+                android:textColorHint="@color/gray2"
+                android:inputType="text"
+                android:editable="false"/>
+
+            <TextView
+                android:id="@+id/textPswChange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:text="Do you won't update password"
+                android:textColor="@color/gray2"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

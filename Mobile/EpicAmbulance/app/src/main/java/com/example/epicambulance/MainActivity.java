@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.example.epicambulance.Ambulance.AmbulanceDashboardActivity;
 import com.example.epicambulance.Classes.Preferences;
 import com.example.epicambulance.User.DashboardActivity;
 
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             } else {
-                Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+                Intent intent = new Intent(MainActivity.this, AmbulanceDashboardActivity.class);
                 startActivity(intent);
                 finish();
             }

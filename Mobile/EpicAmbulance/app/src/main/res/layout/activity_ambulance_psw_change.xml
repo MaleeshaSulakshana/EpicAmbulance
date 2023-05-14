@@ -7,7 +7,7 @@
     android:background="@drawable/bg4"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".SignInActivity">
+    tools:context=".Ambulance.AmbulancePswChangeActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,25 +19,11 @@
         android:layout_marginBottom="30dp"
         android:fontFamily="sans-serif-condensed-light"
         android:gravity="center"
-        android:text="Login"
+        android:text="Change Password"
+        android:textAllCaps="true"
         android:textColor="@color/gray2"
         android:textSize="30dp"
-        android:textAllCaps="true"
         android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/white_background"
-        android:shadowColor="@color/gray2"
-        android:textColor="@color/gray2"
-        android:hint="Username"
-        android:textColorHint="@color/gray2"
-        android:inputType="textEmailAddress"/>
 
     <EditText
         android:id="@+id/psw"
@@ -49,34 +35,34 @@
         android:background="@drawable/white_background"
         android:shadowColor="@color/gray2"
         android:textColor="@color/gray2"
-        android:hint="Password"
+        android:hint="New Password"
+        android:textColorHint="@color/gray2"
+        android:inputType="textPassword"/>
+
+    <EditText
+        android:id="@+id/cpsw"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/white_background"
+        android:shadowColor="@color/gray2"
+        android:textColor="@color/gray2"
+        android:hint="Confirm New Password"
         android:textColorHint="@color/gray2"
         android:inputType="textPassword"
         app:passwordToggleEnabled="true"/>
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnUpdate"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:background="@drawable/blue_background"
         android:textColor="@color/white"
-        android:text="Login"
+        android:text="Update"
         android:textSize="18dp"
         android:textStyle="bold"
         app:backgroundTint="@null"/>
-
-    <TextView
-        android:id="@+id/textSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
-        android:gravity="center"
-        android:text="If you haven't account? Sign Up"
-        android:textColor="@color/gray2"
-        android:textSize="15dp"
-        android:textStyle="bold" />
 
 </LinearLayout>

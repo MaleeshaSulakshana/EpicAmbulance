@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.epicambulance.Ambulance.AmbulanceDashboardActivity;
 import com.example.epicambulance.Classes.API;
 import com.example.epicambulance.Classes.JWTUtils;
 import com.example.epicambulance.Classes.Preferences;
@@ -127,7 +128,7 @@ public class SignInActivity extends AppCompatActivity {
                                     startActivity(intent);
                                     finish();
                                 } else {
-                                    Intent intent = new Intent(SignInActivity.this, DashboardActivity.class);
+                                    Intent intent = new Intent(SignInActivity.this, AmbulanceDashboardActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }

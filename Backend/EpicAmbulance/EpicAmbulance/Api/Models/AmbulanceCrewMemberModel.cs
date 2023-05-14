@@ -87,4 +87,11 @@ namespace EpicAmbulance
         // Read only
         public AmbulanceModel? Ambulance { get; set; }
     }
+
+    public class ChangePasswordAmbulanceCrewMemberModel
+    {
+        [Required]
+        [MaxLength(16)]
+        public string Password { get; set; } = null!;
+    }
 }
