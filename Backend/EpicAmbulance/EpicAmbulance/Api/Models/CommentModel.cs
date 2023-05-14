@@ -15,28 +15,26 @@ namespace EpicAmbulance
             Id = comment.Id;
             CommentDetails = comment.CommentDetails;
             UserId = comment.UserId;
-            User = comment.User;
+            User = comment.User != null ? new ViewEditUserModel(comment.User) : null;
             BookingId = comment.BookingId;
-            Booking = comment.Booking;
+            Booking = comment.Booking != null ? new BookingModel(comment.Booking) : null;
         }
 
         public Guid Id { get; set; }
 
         [Required]
-        [MaxLength(128)]
         public string CommentDetails { get; set; } = null!;
 
         [Required]
         public Guid UserId { get; set; }
 
         // Read only
-        public User? User { get; set; }
+        public ViewEditUserModel? User { get; set; }
 
-        [MaxLength(10)]
-        [MinLength(10)]
+        [Required]
         public Guid BookingId { get; set; }
 
         // Read only
-        public Booking? Booking { get; set; }
+        public BookingModel? Booking { get; set; }
     }
 }

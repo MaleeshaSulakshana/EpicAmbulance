@@ -43,15 +43,15 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
-//        btnBookings.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                Intent intent = new Intent(DashboardActivity.this, InquiriesActivity.class);
-//                startActivity(intent);
-//
-//            }
-//        });
+        btnBookings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(DashboardActivity.this, BookingsActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -17,4 +17,7 @@ public class API {
     //    Bookings api
     public static final String BOOKINGS_API = BASE_URL + "/api/bookings";
 
+    //    Booking comments api
+    public static final String BOOKING_COMMENTS_API = BASE_URL + "/api/comments";
+
 }

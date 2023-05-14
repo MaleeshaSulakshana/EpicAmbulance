@@ -107,9 +107,9 @@ public class AddBookingActivity extends AppCompatActivity {
 
                                     Toast.makeText(AddBookingActivity.this, "Your Booking Placed.", Toast.LENGTH_SHORT).show();
 
-//                                    Intent intent = new Intent(AddBookingActivity.this, InquiriesActivity.class);
-//                                    startActivity(intent);
-//                                    finish();
+                                    Intent intent = new Intent(AddBookingActivity.this, BookingsActivity.class);
+                                    startActivity(intent);
+                                    finish();
 
                                 }
                             }, new Response.ErrorListener() {

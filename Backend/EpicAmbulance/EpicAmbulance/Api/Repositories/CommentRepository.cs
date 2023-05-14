@@ -16,6 +16,7 @@ namespace EpicAmbulance.Repositories
         {
             return _context.Comments
                 .Include(c => c.Booking)
+                .Include(c => c.User)
                 .AsNoTracking()
                 .Where(c => c.Booking.Id == bookingId).ToList();
         }

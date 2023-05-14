@@ -9,13 +9,18 @@ namespace EpicAmbulance.Controllers
     public class CommentController : ControllerBase
     {
         private readonly ICommentRepository _repository;
-        // private readonly IBookingRepository _bookingRepository;
+        private readonly IBookingRepository _bookingRepository;
+        private readonly IUserRepository _userRepository;
 
-        // public CommentController(ICommentRepository commentRepository, IBookingRepository _bookingRepository)
-        public CommentController(ICommentRepository commentRepository)
+        public CommentController(
+            ICommentRepository commentRepository,
+            IBookingRepository bookingRepository,
+            IUserRepository userRepository
+            )
         {
             _repository = commentRepository;
-            // _bookingRepository = _bookingRepository;
+            _bookingRepository = bookingRepository;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
@@ -40,19 +45,23 @@ namespace EpicAmbulance.Controllers
                 return BadRequest();
             }
 
-            // var existUser = _repository.GetByEmail(model.Email);
-            // if (existUser != null)
-            // {
-            //     return BadRequest("Invalid booking id");
-            // }
+            var user = _userRepository.Get(model.UserId);
+            if (user == null)
+            {
+                return BadRequest("Invalid user.");
+            }
+            var booking = _bookingRepository.Get(model.BookingId);
+
+            if (booking == null)
+            {
+                return BadRequest("Invalid booking.");
+            }
 
             var comment = new Comment()
             {
                 CommentDetails = model.CommentDetails!,
                 UserId = model.UserId!,
-                User = model.User!,
-                BookingId = model.BookingId!,
-                Booking = model.Booking!,
+                BookingId = model.BookingId!
             };
 
             _repository.Create(comment);
