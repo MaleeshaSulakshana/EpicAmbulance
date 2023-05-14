@@ -10,6 +10,8 @@ namespace EpicAmbulance.Repositories
 
         IEnumerable<AmbulanceCrewMember> GetAll();
 
+        int GetAmbulanceCrewMemberCount();
+
         void Create(AmbulanceCrewMember user);
 
         void Update(AmbulanceCrewMember user);

@@ -9,6 +9,8 @@ namespace EpicAmbulance.Repositories
 
         IEnumerable<Hospital> GetAll();
 
+        int GetHospitalCount();
+
         void Create(Hospital hospital);
 
         void Update(Hospital hospital);

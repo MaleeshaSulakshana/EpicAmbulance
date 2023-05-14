@@ -33,17 +33,20 @@ namespace EpicAmbulance.Repositories
             return _context.Users.AsNoTracking().Where(u => u.IsDeleted == false).ToList();
         }
 
+        public int GetUserCount()
+        {
+            return _context.Users
+                .Include(c => c.Bookings)
+                .AsNoTracking()
+                .Where(u => u.IsDeleted == false)
+                .Count();
+        }
+
         public void Create(User user)
         {
             _context.Users.Add(user);
             _context.SaveChanges();
         }
-
-        // public void Delete(User user)
-        // {
-        //     _context.Remove(user);
-        //     _context.SaveChanges();
-        // }
 
         public void Update(User user)
         {

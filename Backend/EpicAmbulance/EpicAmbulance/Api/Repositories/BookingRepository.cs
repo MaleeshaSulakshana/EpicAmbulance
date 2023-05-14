@@ -70,6 +70,30 @@ namespace EpicAmbulance.Repositories
                 .AsNoTracking().ToList();
         }
 
+        public int GetCompletedBookingCount()
+        {
+            return _context.Bookings
+                .Include(a => a.Hospital)
+                .Include(a => a.Ambulance)
+                .Include(a => a.User)
+                .Include(a => a.Comments)
+                .AsNoTracking()
+                .Where(a => a.StatusType == StatusType.Completed)
+                .Count();
+        }
+
+        public int GetPendingBookingCount()
+        {
+            return _context.Bookings
+                .Include(a => a.Hospital)
+                .Include(a => a.Ambulance)
+                .Include(a => a.User)
+                .Include(a => a.Comments)
+                .AsNoTracking()
+                .Where(a => a.StatusType == StatusType.Pending)
+                .Count();
+        }
+
         public void Create(Booking booking)
         {
             _context.Bookings.Add(booking);

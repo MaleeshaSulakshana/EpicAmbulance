@@ -31,6 +31,14 @@ namespace EpicAmbulance.Repositories
             return _context.SystemUsers.AsNoTracking().Where(u => u.IsDeleted == false).ToList();
         }
 
+        public int GetSystemUserCount()
+        {
+            return _context.SystemUsers
+                .AsNoTracking()
+                .Where(u => u.IsDeleted == false)
+                .Count();
+        }
+
         public void Create(SystemUser user)
         {
             _context.SystemUsers.Add(user);

@@ -10,6 +10,8 @@ namespace EpicAmbulance.Repositories
 
         IEnumerable<HospitalUser> GetAll();
 
+        int GetHospitalUserCount();
+
         void Create(HospitalUser user);
 
         void Update(HospitalUser user);

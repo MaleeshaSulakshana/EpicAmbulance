@@ -15,6 +15,10 @@ namespace EpicAmbulance.Repositories
 
         IEnumerable<Booking> GetAllByAmbulanceId(Guid ambulanceId);
 
+        int GetCompletedBookingCount();
+
+        int GetPendingBookingCount();
+
         void Create(Booking booking);
 
         void Update(Booking booking);

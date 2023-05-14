@@ -40,6 +40,16 @@ namespace EpicAmbulance.Repositories
                 .ToList();
         }
 
+        public int GetAmbulanceCrewMemberCount()
+        {
+            return _context.AmbulanceCrewMembers
+                .Include(h => h.Hospital)
+                .Include(h => h.Ambulance)
+                .AsNoTracking()
+                .Where(u => u.IsDeleted == false)
+                .Count();
+        }
+
         public void Create(AmbulanceCrewMember user)
         {
             _context.AmbulanceCrewMembers.Add(user);
