@@ -33,6 +33,8 @@ public class Booking
 
     public User User { get; set; } = null!;
 
+    public DateTimeOffset DateTime { get; set; }
+
     public List<Comment> Comments
     {
         get => _comments ?? (_comments = new List<Comment>());

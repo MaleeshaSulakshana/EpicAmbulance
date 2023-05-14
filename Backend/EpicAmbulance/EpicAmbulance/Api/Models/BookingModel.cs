@@ -20,11 +20,12 @@ namespace EpicAmbulance
             TpNumber = booking.TpNumber;
             Latitude = booking.Latitude;
             Longitude = booking.Longitude;
-            Status = booking.Status;
+            Status = booking.Status == true ? "Completed" : "Pending";
             AmbulanceId = booking.AmbulanceId;
             Ambulance = booking.Ambulance != null ? new AmbulanceModel(booking.Ambulance) : null; ;
             UserId = booking.UserId;
-            User = booking.User != null ? new ViewEditUserModel(booking.User) : null; ;
+            User = booking.User != null ? new ViewEditUserModel(booking.User) : null;
+            DateTime = booking.DateTime.ToLocalTime().ToString("yyyy-MM-dd hh:mm:ss");
         }
 
         // Read only
@@ -37,7 +38,7 @@ namespace EpicAmbulance
         public Guid HospitalId { get; set; }
 
         // Read only
-        public HospitalModel? Hospital { get; set; } = null!;
+        public HospitalModel? Hospital { get; set; }
 
         [Required]
         public string Address { get; set; } = null!;
@@ -53,18 +54,21 @@ namespace EpicAmbulance
         public double Longitude { get; set; }
 
         // Read only
-        public bool Status { get; set; }
+        public string? Status { get; set; }
 
         // Read only
         public Guid? AmbulanceId { get; set; }
 
         // Read only
-        public AmbulanceModel? Ambulance { get; set; } = null!;
+        public AmbulanceModel? Ambulance { get; set; }
 
         [Required]
         public Guid UserId { get; set; }
 
         // Read only
-        public ViewEditUserModel? User { get; set; } = null!;
+        public ViewEditUserModel? User { get; set; }
+
+        // Read only
+        public string? DateTime { get; set; }
     }
 }

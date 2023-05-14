@@ -30,6 +30,7 @@ builder.Services.AddScoped<IHospitalUserRepository, HospitalUserRepository>();
 builder.Services.AddScoped<IAmbulanceCrewMemberRepository, AmbulanceCrewMemberRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<IHospitalRepository, HospitalRepository>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 
 // Adding Authentication
 builder.Services.AddAuthentication(options =>

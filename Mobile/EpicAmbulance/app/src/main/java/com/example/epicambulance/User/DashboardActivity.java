@@ -14,7 +14,7 @@ import com.example.epicambulance.R;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    private LinearLayout btnHospitals, btnSearch, btnBookings, btnProfile, btnLogout;
+    private LinearLayout btnHospitals, btnBookings, btnProfile, btnLogout;
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -25,7 +25,6 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         btnHospitals = (LinearLayout) this.findViewById(R.id.btnHospitals);
-        btnSearch = (LinearLayout) this.findViewById(R.id.btnSearch);
         btnBookings = (LinearLayout) this.findViewById(R.id.btnBookings);
         btnProfile = (LinearLayout) this.findViewById(R.id.btnProfile);
         btnLogout = (LinearLayout) this.findViewById(R.id.btnLogout);
@@ -43,16 +42,6 @@ public class DashboardActivity extends AppCompatActivity {
 
             }
         });
-
-//        btnSearch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                Intent intent = new Intent(DashboardActivity.this, SearchActivity.class);
-//                startActivity(intent);
-//
-//            }
-//        });
 
 //        btnBookings.setOnClickListener(new View.OnClickListener() {
 //            @Override

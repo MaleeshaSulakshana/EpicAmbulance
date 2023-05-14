@@ -34,29 +34,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/btnSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:orientation="vertical"
-        android:gravity="center">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_search"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Search"
-            android:textColor="@color/gray1"
-            android:textStyle="normal"
-            android:textSize="12dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/btnBookings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EpicAmbulance.Controllers
 {
     [ApiController]
-    [Route("api/users")]
+    [Route("api/bookings")]
     public class BookingController : ControllerBase
     {
         private readonly IBookingRepository _bookingRepository;
@@ -135,7 +135,8 @@ namespace EpicAmbulance.Controllers
                 Longitude = model.Longitude!,
                 Status = false,
                 AmbulanceId = ambulanceId!,
-                UserId = model.UserId!
+                UserId = model.UserId!,
+                DateTime = DateTimeOffset.UtcNow,
             };
 
             _bookingRepository.Create(booking);

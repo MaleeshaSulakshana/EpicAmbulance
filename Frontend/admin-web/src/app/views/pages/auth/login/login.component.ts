@@ -70,8 +70,8 @@ export class LoginComponent implements OnInit {
 
         if (localStorage.getItem('isLoggedin')) {
           this.getUserDetails(localStorage.getItem("userId"));
-          this.isLoading = false;
-          this.router.navigate([this.returnUrl]);
+          // this.isLoading = false;
+          // this.router.navigate([this.returnUrl]);
         }
 
       }
@@ -104,6 +104,9 @@ export class LoginComponent implements OnInit {
       if (response != null) {
         localStorage.setItem("userDetails", JSON.stringify(response.data));
       }
+
+      this.isLoading = false;
+      this.router.navigate([this.returnUrl]);
 
     } catch (error: any) {
       this.toast.show(error.statusText, "error");

@@ -83,8 +83,8 @@ public class HospitalsActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(HospitalsActivity.this, HospitalDetailsViewActivity.class);
                 intent.putExtra("id", selected);
-                intent.putExtra("latitude", latitude);
-                intent.putExtra("longitude", longitude);
+                intent.putExtra("latitude", String.valueOf(latitude));
+                intent.putExtra("longitude", String.valueOf(longitude));
                 intent.putExtra("distance", detailsArrayList.get(i).getDistance());
                 startActivity(intent);
 

@@ -22,10 +22,13 @@
                                 <input type="text" class="form-control" [(ngModel)]="filters.vehicleNo" placeholder="Vehicle No">
                             </div>
                         </div>
-						<div class="col-sm-3">
+						<div class="col-sm-4">
                             <div class="mb-3">
                                 <label class="form-label">Hospital</label>
-                                <input type="text" class="form-control" [(ngModel)]="filters.hospital" placeholder="Hospital">
+                                <select class="form-select form-select-sm mb-3" [(ngModel)]="filters.hospital">
+                                    <option selected value="">ALL</option>
+                                    <option *ngFor="let hospital of hospitals" value="{{ hospital.id }}">{{ hospital.name }}</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-4">

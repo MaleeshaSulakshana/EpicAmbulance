@@ -14,7 +14,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'dashboard',
+        path: '',
         // canActivate: [PermissionGuard],
         loadChildren: () => import('./views/pages/dashboard/dashboard.module').then(m => m.DashboardModule),
         // data: {permission: 'dashboard'}
@@ -35,6 +35,12 @@ const routes: Routes = [
         path: 'users',
         // canActivate: [PermissionGuard],
         loadChildren: () => import('./views/pages/users/users.module').then(m => m.UsersModule),
+        // data: {permission: ''}
+      },
+      {
+        path: 'bookings',
+        // canActivate: [PermissionGuard],
+        loadChildren: () => import('./views/pages/bookings/bookings.module').then(m => m.BookingsModule),
         // data: {permission: ''}
       },
     ]

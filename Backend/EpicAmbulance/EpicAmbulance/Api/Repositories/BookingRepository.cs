@@ -30,6 +30,7 @@ namespace EpicAmbulance.Repositories
                 .Include(a => a.Ambulance)
                 .Include(a => a.User)
                 .Include(a => a.Comments)
+                .OrderByDescending(a => a.DateTime)
                 .AsNoTracking().ToList();
         }
 
@@ -41,6 +42,7 @@ namespace EpicAmbulance.Repositories
                 .Include(a => a.User)
                 .Include(a => a.Comments)
                 .Where(a => a.User.Id == userId)
+                .OrderByDescending(a => a.DateTime)
                 .AsNoTracking().ToList();
         }
 
@@ -52,6 +54,7 @@ namespace EpicAmbulance.Repositories
                 .Include(a => a.User)
                 .Include(a => a.Comments)
                 .Where(a => a.Hospital.Id == hospitalId)
+                .OrderByDescending(a => a.DateTime)
                 .AsNoTracking().ToList();
         }
 
@@ -63,6 +66,7 @@ namespace EpicAmbulance.Repositories
                 .Include(a => a.User)
                 .Include(a => a.Comments)
                 .Where(a => a.Ambulance.Id == ambulanceId)
+                .OrderByDescending(a => a.DateTime)
                 .AsNoTracking().ToList();
         }
 

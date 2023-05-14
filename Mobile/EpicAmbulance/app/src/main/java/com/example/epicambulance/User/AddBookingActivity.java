@@ -47,7 +47,6 @@ public class AddBookingActivity extends AppCompatActivity {
 
     private Button btnAdd;
     private EditText details, address, number;
-    private ProgressBar progressBar;
     private String hospitalId = "";
     String latitude = "", longitude = "";
 
@@ -62,7 +61,6 @@ public class AddBookingActivity extends AppCompatActivity {
         longitude = intentThis.getStringExtra("longitude");
 
         btnAdd = (Button) this.findViewById(R.id.btnAdd);
-        progressBar = (ProgressBar) this.findViewById(R.id.progressBar);
 
         details = (EditText) this.findViewById(R.id.details);
         address = (EditText) this.findViewById(R.id.address);
@@ -74,8 +72,6 @@ public class AddBookingActivity extends AppCompatActivity {
 
                 if (latitude != "" && longitude != "") {
 
-                    Toast.makeText(AddBookingActivity.this, "Please wait for upload your inquiry. It take few minutes!",Toast.LENGTH_SHORT).show();
-                    progressBar.setVisibility(View.VISIBLE);
                     btnAdd.setEnabled(false);
 
                     String strDetails = details.getText().toString();
@@ -84,17 +80,16 @@ public class AddBookingActivity extends AppCompatActivity {
 
                     if (strDetails.equals("") || strAddress.equals("") || strNumber.equals("")) {
                         btnAdd.setEnabled(true);
-                        progressBar.setVisibility(View.VISIBLE);
                         Toast.makeText(AddBookingActivity.this, "Fields are empty!",Toast.LENGTH_SHORT).show();
 
                     } else if (strNumber.length() != 10) {
                         btnAdd.setEnabled(true);
-                        progressBar.setVisibility(View.VISIBLE);
                         Toast.makeText(AddBookingActivity.this, "Please check your mobile number!",Toast.LENGTH_SHORT).show();
 
                     } else {
 
                         try {
+                            Toast.makeText(AddBookingActivity.this, "Wait for placed booking.", Toast.LENGTH_SHORT).show();
                             String URL = API.BOOKINGS_API;
 
                             JSONObject parameter =  new JSONObject();
@@ -110,32 +105,18 @@ public class AddBookingActivity extends AppCompatActivity {
                                 @Override
                                 public void onResponse(JSONObject response) {
 
-                                    Toast.makeText(AddBookingActivity.this, "our Booking Placed.", Toast.LENGTH_SHORT).show();
-//                                    try {
-//
-////                                        String status = response.getString("status");
-////                                        String msg = response.getString("msg");
-//
-//                                        Toast.makeText(AddBookingActivity.this, msg, Toast.LENGTH_SHORT).show();
-//
-////                                        if (status.equals("success")) {
-////                                            Intent intent = new Intent(AddBookingActivity.this, InquiriesActivity.class);
-////                                            startActivity(intent);
-////                                            finish();
-////                                        } else {
-////                                            btnAdd.setEnabled(true);
-////                                            progressBar.setVisibility(View.VISIBLE);
-////                                        }
-//
-//                                    } catch (JSONException e) {
-//                                        e.printStackTrace();
-//                                    }
+                                    Toast.makeText(AddBookingActivity.this, "Your Booking Placed.", Toast.LENGTH_SHORT).show();
+
+//                                    Intent intent = new Intent(AddBookingActivity.this, InquiriesActivity.class);
+//                                    startActivity(intent);
+//                                    finish();
 
                                 }
                             }, new Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
-                                    Toast.makeText(AddBookingActivity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                                    btnAdd.setEnabled(true);
+                                    Toast.makeText(AddBookingActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
                                 }
                             });
 

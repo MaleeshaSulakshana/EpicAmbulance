@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
 	<div>
-		<h4 class="mb-3 mb-md-0">App Users</h4>
+		<h4 class="mb-3 mb-md-0">Bookings</h4>
 	</div>
 </div>
 
@@ -15,20 +15,26 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="mb-3">
-                                <label class="form-label">Name</label>
-                                <input type="text" class="form-control" [(ngModel)]="filters.name" placeholder="Name">
+                                <label class="form-label">Date</label>
+                                <input type="date" class="form-control" [(ngModel)]="filters.date" placeholder="Date">
                             </div>
                         </div>
-						<div class="col-sm-3">
+						<div class="col-sm-4">
                             <div class="mb-3">
-                                <label class="form-label">Tp Number</label>
-                                <input type="text" class="form-control" [(ngModel)]="filters.tpNumber" placeholder="Tp Number">
+                                <label class="form-label">Hospital</label>
+                                <select class="form-select form-select-sm mb-3" [(ngModel)]="filters.hospital">
+                                    <option selected value="">ALL</option>
+                                    <option *ngFor="let hospital of hospitals" value="{{ hospital.id }}">{{ hospital.name }}</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <div class="mb-3">
-                                <label class="form-label">NIC</label>
-                                <input type="text" class="form-control" [(ngModel)]="filters.nic" placeholder="NIC">
+                                <label class="form-label">Ambulance</label>
+                                <select class="form-select form-select-sm mb-3" [(ngModel)]="filters.ambulance">
+                                    <option selected value="">ALL</option>
+                                    <option *ngFor="let ambulance of ambulances" value="{{ ambulance.id }}">{{ ambulance.vehicleNo }}</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -46,7 +52,7 @@
 						<div class="table-responsive">
 							<ngx-datatable
 								class="bootstrap"
-								[rows]="appUsers"
+								[rows]="bookings"
 								[loadingIndicator]="loadingIndicator"
 								[columnMode]="ColumnMode.force"
 								[footerHeight]="0"
@@ -54,11 +60,11 @@
 								[externalSorting]="false"
 							>
 
-								<ngx-datatable-column [sortable]="false" name="Name" prop="name"></ngx-datatable-column>
-								<ngx-datatable-column [sortable]="false" name="Nic" prop="nic"></ngx-datatable-column>
+                                <ngx-datatable-column [sortable]="false" name="Date Time" prop="dateTime"></ngx-datatable-column>
+								<ngx-datatable-column [sortable]="false" name="Hospital" prop="hospital.name"></ngx-datatable-column>
+								<ngx-datatable-column [sortable]="false" name="Ambulance" prop="ambulance.vehicleNo"></ngx-datatable-column>
+								<ngx-datatable-column [sortable]="false" name="User" prop="user.name"></ngx-datatable-column>
 								<ngx-datatable-column [sortable]="false" name="Tp Number" prop="tpNumber"></ngx-datatable-column>
-								<ngx-datatable-column [sortable]="false" name="Email" prop="email"></ngx-datatable-column>
-								<ngx-datatable-column [sortable]="false" name="Address" prop="address" ></ngx-datatable-column>
 
 								<ngx-datatable-column [sortable]="false" name="Action" prop="action">
                                     <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex"
@@ -69,7 +75,7 @@
                                 </ngx-datatable-column>
 
 							</ngx-datatable>
-							<div *ngIf="0 === appUsers.length" class="my-2 ng-star-inserted text-black-50 text-center">
+							<div *ngIf="0 === bookings.length" class="my-2 ng-star-inserted text-black-50 text-center">
 								No data to display
 							</div>
 
@@ -87,17 +93,38 @@
 <!--modal-->
 <ng-template #lgModal let-modal>
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">View User</h5>
+        <h5 class="modal-title" id="exampleModalLabel">View Booking</h5>
         <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
     </div>
     <div class="modal-body">
         <div class="form-group col-span-12 sm:col-span-12">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name"
+            <label for="dateTime">Date Time</label>
+            <input type="text" class="form-control" id="dateTime"
                     required
-                    [(ngModel)]="name" name="name">
+                    [(ngModel)]="dateTime" name="dateTime">
         </div>
 
+        <div class="form-group col-span-12 sm:col-span-12">
+            <label for="hospital">Hospital</label>
+            <input type="text" class="form-control" id="hospital"
+                    required
+                    [(ngModel)]="hospital" name="hospital">
+        </div>
+
+        <div class="form-group col-span-12 sm:col-span-12">
+            <label for="ambulance">Ambulance</label>
+            <input type="text" class="form-control" id="ambulance"
+                    required
+                    [(ngModel)]="ambulance" name="ambulance">
+        </div>
+
+        <div class="form-group col-span-12 sm:col-span-12">
+            <label for="user">User</label>
+            <input type="text" class="form-control" id="user"
+                    required
+                    [(ngModel)]="user" name="user">
+        </div>
+        
         <div class="form-group col-span-12 sm:col-span-12">
             <label for="address">Address</label>
             <input type="text" class="form-control" id="address"
@@ -113,18 +140,20 @@
         </div>
 
         <div class="form-group col-span-12 sm:col-span-12">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" id="email"
+            <label for="details">Details</label>
+            <input type="text" class="form-control" id="details"
                     required
-                    [(ngModel)]="email" name="email">
+                    [(ngModel)]="details" name="details">
         </div>
 
         <div class="form-group col-span-12 sm:col-span-12">
-            <label for="nic">NIC</label>
-            <input type="text" class="form-control" id="nic"
+            <label for="status">Status</label>
+            <input type="text" class="form-control" id="status"
                     required
-                    [(ngModel)]="nic" name="nic">
+                    [(ngModel)]="status" name="status">
         </div>
-
+        <hr/>
+        <button type="button" class="btn btn-secondary" (click)="openMap()">View Location</button>
     </div>
+
 </ng-template>
