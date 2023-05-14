@@ -72,9 +72,17 @@ export class HospitalsComponent implements OnInit {
 
   openAddModal(content: TemplateRef<any>, data: any = null) {
 
+    this.selectedData = null;
+    this.name = "";
+    this.type = "";
+    this.address = "";
+    this.tpNumber = "";
+    this.latitude = "";
+    this.longitude = "";
+    this.mapUrl = "";
+
     if (data != null) {
       this.selectedData = data;
-
       this.name = data.name;
       this.type = data.type;
       this.address = data.address;

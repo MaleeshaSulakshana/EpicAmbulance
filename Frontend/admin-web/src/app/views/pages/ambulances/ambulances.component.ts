@@ -26,8 +26,6 @@ export class AmbulancesComponent implements OnInit {
 
   vehicleNo: any;
   type: any;
-  address: any;
-  tpNumber: any;
   hospital: any;
 
   selectedData: any = null;
@@ -35,8 +33,6 @@ export class AmbulancesComponent implements OnInit {
   selected: any = {
     vehicleNo: "",
     type: "",
-    address: "",
-    tpNumber: "",
     hospital: ""
   };
 
@@ -63,22 +59,23 @@ export class AmbulancesComponent implements OnInit {
     this.form = this.fb.group({
       vehicleNo: [this.selected.vehicleNo, [Validators.required]],
       type: [this.selected.type, [Validators.required]],
-      address: [this.selected.address, [Validators.required]],
-      tpNumber: [this.selected.tpNumber, [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)]],
       hospital: [this.selected.hospital, [Validators.required]],
     });
   }
 
   openAddModal(content: TemplateRef<any>, data: any = null) {
 
+    this.vehicleNo = "";
+    this.type = "";
+    this.hospital = "";
+    this.selectedData = null;
+
     if (data != null) {
       this.selectedData = data;
 
       this.vehicleNo = data.vehicleNo;
       this.type = data.type;
-      this.address = data.address;
-      this.tpNumber = data.tpNumber;
-      this.hospital = data.hospital;
+      this.hospital = data.hospitalId;
 
     } else {
 
@@ -153,8 +150,6 @@ export class AmbulancesComponent implements OnInit {
       var data = {
         vehicleNo: this.vehicleNo,
         type: this.type,
-        address: this.address,
-        // tpNumber: this.tpNumber,
         hospitalId: this.hospital
       }
 
@@ -179,8 +174,6 @@ export class AmbulancesComponent implements OnInit {
       var data = {
         vehicleNo: this.vehicleNo,
         type: this.type,
-        address: this.address,
-        // tpNumber: this.tpNumber,
         hospitalId: this.hospital
       }
 
