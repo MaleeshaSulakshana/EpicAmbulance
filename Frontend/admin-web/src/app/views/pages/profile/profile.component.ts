@@ -13,8 +13,10 @@ import { ProfileService } from './profile.service';
 export class ProfileComponent implements OnInit {
 
   isLoading = false;
+
   systemUserForm: FormGroup;
   hospitalUserForm: FormGroup;
+  passwordChangeForm: FormGroup;
 
   profile: any = {};
 
@@ -31,6 +33,9 @@ export class ProfileComponent implements OnInit {
   hospitalUserHospitalAddress: any;
   hospitalUserHospitalTpNumber: any;
 
+  password: any;
+  confirmPassword: any;
+
   systemUserSelected: any = {
     name: "",
     address: "",
@@ -46,6 +51,11 @@ export class ProfileComponent implements OnInit {
     hospitalName: "",
     hospitalAddress: "",
     hospitalTpNumber: "",
+  };
+
+  passwordChangeSelected: any = {
+    password: "",
+    confirmPassword: ""
   };
 
   userRoleType: string = "";
@@ -87,8 +97,12 @@ export class ProfileComponent implements OnInit {
     this.hospitalUserForm.controls['hospitalAddress'].disable();
     this.hospitalUserForm.controls['hospitalTpNumber'].disable();
 
-
     this.isLoading = false;
+
+    this.passwordChangeForm = this.fb.group({
+      password: [this.passwordChangeSelected.password, [Validators.required, Validators.minLength(8), Validators.maxLength(15)]],
+      confirmPassword: [this.passwordChangeSelected.confirmPassword, [Validators.required]]
+    });
   }
 
   getProfileDetails() {
@@ -184,6 +198,41 @@ export class ProfileComponent implements OnInit {
         this.hospitalUserForm.reset();
         this.getProfileDetails();
         return;
+      }
+
+      this.toast.show("Something went wrong", "error");
+    } catch (error: any) {
+      this.toast.show(error.statusText, 'error');
+    }
+  }
+
+  async updatePassword() {
+    try {
+
+      var data = {
+        password: this.password
+      }
+
+      if (this.userRoleType === "SystemUser") {
+
+        const res = await this.profileService.updateSystemUserProfilePassword(localStorage.getItem('userId')!, data);
+
+        if (res.status == 200) {
+          this.toast.show("Profile password has been successfully updated", "success");
+          this.passwordChangeForm.reset();
+          this.getProfileDetails();
+          return;
+        }
+      } else {
+
+        const res = await this.profileService.updateHospitalUserProfilePassword(localStorage.getItem('userId')!, data);
+
+        if (res.status == 200) {
+          this.toast.show("Profile password has been successfully updated", "success");
+          this.passwordChangeForm.reset();
+          this.getProfileDetails();
+          return;
+        }
       }
 
       this.toast.show("Something went wrong", "error");

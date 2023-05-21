@@ -263,4 +263,68 @@
 		</form>
 	</div>
 
+    <br/>
+    <hr/>
+    <br/>
+
+    <div class="row">
+		<form [formGroup]="passwordChangeForm" (submit)="updatePassword()">
+			<div class="col-12 col-xl-12 grid-margin stretch-card mb-2">
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-4">
+								<h5 class="mb-3 mb-md-0">Password Change</h5>
+								<h6 class="mb-3 mb-md-0 text-muted mt-1">Update you profile password</h6>
+							</div>
+							<div class="col-8">
+								<div class="mb-3">
+									<div class="mb-3">
+										<div class="row mb-3">
+											<div class="col-md-8">
+												<label class="form-label">Password</label>
+												<input
+													type="password"
+													class="form-control"
+													placeholder="Password"
+                                                    [(ngModel)]="password"
+													formControlName="password"
+													[class.is-invalid]="passwordChangeForm.get('password')?.hasError('required')"
+												/>
+												<span class="invalid-feedback" *ngIf="passwordChangeForm.get('password')?.hasError('required')"
+													>Password is required.</span
+												>
+											</div>
+										</div>
+									</div>
+
+                                    <div class="mb-3">
+										<div class="row mb-3">
+											<div class="col-md-8">
+												<label class="form-label">Confirm Password</label>
+												<input
+													type="password"
+													class="form-control"
+													placeholder="Confirm Password"
+                                                    [(ngModel)]="confirmPassword"
+													formControlName="confirmPassword"
+													[class.is-invalid]="passwordChangeForm.get('confirmPassword')?.hasError('required')"
+												/>
+												<span class="invalid-feedback" *ngIf="passwordChangeForm.get('confirmPassword')?.hasError('required')"
+													>Confirm Password is required.</span
+												>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button type="submit" [disabled]="!passwordChangeForm.valid || passwordChangeForm.get('password')?.value !== passwordChangeForm.get('confirmPassword')?.value" class="float-end btn btn-primary me-2">Update</button>
+		</form>
+	</div>
+
 </div>

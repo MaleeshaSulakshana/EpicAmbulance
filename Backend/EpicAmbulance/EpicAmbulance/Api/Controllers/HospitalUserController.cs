@@ -114,31 +114,31 @@ namespace EpicAmbulance.Controllers
             return Ok(Get(id));
         }
 
-        // [HttpPut]
-        // [Route("{id}/psw")]
-        // public ActionResult<ViewEditHospitalUserModel> PutPsw(Guid id, ViewEditHospitalUserModel model)
-        // {
-        //     if (!ModelState.IsValid)
-        //     {
-        //         return BadRequest();
-        //     }
+        [HttpPut]
+        [Route("{id}/psw")]
+        public ActionResult<ViewEditHospitalUserModel> PutPsw(Guid id, ChangePasswordHospitalUserModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
 
-        //     var user = _repository.Get(id);
-        //     if (user == null)
-        //     {
-        //         return NotFound("User not found!");
-        //     }
+            var user = _repository.Get(id);
+            if (user == null)
+            {
+                return NotFound("User not found!");
+            }
 
-        //     if (model.Password.Length < 8)
-        //     {
-        //         return BadRequest("Password must contains 8 charterers.");
-        //     }
+            if (model.Password.Length < 8)
+            {
+                return BadRequest("Password must contains 8 charterers.");
+            }
 
-        //     user.Password = model.Password!;
+            user.Password = model.Password!;
 
-        //     _repository.Update(user);
-        //     return Ok("Password update successfull");
-        // }
+            _repository.Update(user);
+            return Ok("Password update successful");
+        }
 
         [HttpDelete]
         [Route("{id}")]

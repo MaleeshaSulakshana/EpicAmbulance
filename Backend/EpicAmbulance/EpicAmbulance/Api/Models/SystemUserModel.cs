@@ -75,4 +75,11 @@ namespace EpicAmbulance
         [MinLength(10)]
         public string TpNumber { get; set; } = null!;
     }
+
+    public class ChangePasswordSystemUserModel
+    {
+        [Required]
+        [MaxLength(16)]
+        public string Password { get; set; } = null!;
+    }
 }

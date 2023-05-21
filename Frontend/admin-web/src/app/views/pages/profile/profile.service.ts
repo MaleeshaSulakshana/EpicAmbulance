@@ -25,4 +25,12 @@ export class ProfileService {
     async updateHospitalUserProfile(id: any, data: any) {
         return this.http.setUrl(`api/hospitalUsers/${id}`).setMethod(httpMethods.put).setData(data).request();
     }
+
+    async updateSystemUserProfilePassword(id: any, data: any) {
+        return this.http.setUrl(`api/systemUsers/${id}/psw`).setMethod(httpMethods.put).setData(data).request();
+    }
+
+    async updateHospitalUserProfilePassword(id: any, data: any) {
+        return this.http.setUrl(`api/hospitalUsers/${id}/psw`).setMethod(httpMethods.put).setData(data).request();
+    }
 }
