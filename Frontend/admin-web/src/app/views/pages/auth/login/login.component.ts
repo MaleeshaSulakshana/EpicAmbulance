@@ -65,7 +65,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("userRole", JWTData.userRole);
 
         var permissions = JSON.parse(JWTData.permissions);
-        localStorage.setItem("permissions", JSON.stringify(['super.admin']));
+        // localStorage.setItem("permissions", JSON.stringify(['super.admin']));
+        localStorage.setItem("permissions", JSON.stringify(permissions));
 
 
         if (localStorage.getItem('isLoggedin')) {

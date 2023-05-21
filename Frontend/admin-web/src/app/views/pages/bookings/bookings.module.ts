@@ -21,7 +21,7 @@ const routes: Routes = [
     path: '',
     canActivate: [PermissionGuard],
     component: BookingsComponent,
-    // data: { permission: 'Bookings.view' },
+    data: { permission: 'bookings.view' },
     pathMatch: 'full'
   }
 ]

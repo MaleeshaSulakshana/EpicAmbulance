@@ -30,27 +30,27 @@ const routes: Routes = [
   },
   {
     path: 'system-users',
-    // canActivate: [PermissionGuard],
+    canActivate: [PermissionGuard],
     component: SystemUsersComponent,
-    // data: { permission: 'users.details.view' },
+    data: { permission: 'systemUsers.view' },
   },
   {
     path: 'app-users',
-    // canActivate: [PermissionGuard],
+    canActivate: [PermissionGuard],
     component: AppUsersComponent,
-    // data: { permission: 'users.details.view' },
+    data: { permission: 'appUsers.view' },
   },
   {
     path: 'hospital-users',
-    // canActivate: [PermissionGuard],
+    canActivate: [PermissionGuard],
     component: HospitalUsersComponent,
-    // data: { permission: 'users.details.view' },
+    data: { permission: 'hospitalUsers.view' },
   },
   {
     path: 'ambulance-crew-members',
-    // canActivate: [PermissionGuard],
+    canActivate: [PermissionGuard],
     component: AmbulanceCrewMembersComponent,
-    // data: { permission: 'users.details.view' },
+    data: { permission: 'ambulanceCrewMembers.view' },
   },
 ]
 

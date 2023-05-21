@@ -76,7 +76,15 @@ namespace EpicAmbulance.Controllers
                     userId = systemUser.Id;
                     userRole = "SystemUser";
                     userName = model.UserName;
-                    permissions.Add("systemAdmin");
+
+                    permissions.Add("profile.view");
+                    permissions.Add("ambulances.view");
+                    permissions.Add("bookings.view");
+                    permissions.Add("hospitals.view");
+                    permissions.Add("systemUsers.view");
+                    permissions.Add("appUsers.view");
+                    permissions.Add("hospitalUsers.view");
+                    permissions.Add("ambulanceCrewMembers.view");
                 }
             }
 
@@ -90,7 +98,14 @@ namespace EpicAmbulance.Controllers
                         userId = hospitalUser.Id;
                         userRole = "HospitalUser";
                         userName = model.UserName;
-                        permissions.Add("hospitalUser");
+
+                        permissions.Add("profile.view");
+                        permissions.Add("ambulances.view");
+                        permissions.Add("bookings.view");
+                        permissions.Add("hospitals.view");
+                        permissions.Add("appUsers.view");
+                        permissions.Add("hospitalUsers.view");
+                        permissions.Add("ambulanceCrewMembers.view");
                     }
                 }
             }

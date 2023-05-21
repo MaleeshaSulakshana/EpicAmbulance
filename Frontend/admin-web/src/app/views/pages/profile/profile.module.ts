@@ -21,7 +21,7 @@ const routes: Routes = [
     path: '',
     canActivate: [PermissionGuard],
     component: ProfileComponent,
-    // data: { permission: 'hospitals.view' },
+    data: { permission: 'profile.view' },
     pathMatch: 'full'
   }
 ]

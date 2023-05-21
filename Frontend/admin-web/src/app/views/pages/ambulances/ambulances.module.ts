@@ -20,7 +20,7 @@ const routes: Routes = [
     path: '',
     canActivate: [PermissionGuard],
     component: AmbulancesComponent,
-    // data: { permission: 'hospitals.view' },
+    data: { permission: 'ambulances.view' },
     pathMatch: 'full'
   }
 ]
