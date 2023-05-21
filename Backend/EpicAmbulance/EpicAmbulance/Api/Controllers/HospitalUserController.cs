@@ -98,9 +98,17 @@ namespace EpicAmbulance.Controllers
 
             user.Name = model.Name!;
             user.Address = model.Address!;
-            user.Nic = model.Nic!;
             user.TpNumber = model.TpNumber!;
-            user.HospitalId = model.HospitalId!;
+
+            if (model.Nic != null)
+            {
+                user.Nic = model.Nic;
+            }
+
+            if (model.HospitalId != null)
+            {
+                user.HospitalId = (Guid)model.HospitalId;
+            }
 
             _repository.Update(user);
             return Ok(Get(id));

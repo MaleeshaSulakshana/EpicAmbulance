@@ -1,0 +1,266 @@
+<div *ngIf="isLoading" class="spinner-wrapper">
+	<div class="spinner"></div>
+</div>
+<div *ngIf="!isLoading">
+	<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+		<div>
+			<h4 class="mb-3 mb-md-0">Profile</h4>
+		</div>
+	</div>
+
+	<div class="row" *ngIf="userRoleType === 'SystemUser'">
+		<form [formGroup]="systemUserForm" (submit)="updateProfileDetails()">
+			<div class="col-12 col-xl-12 grid-margin stretch-card mb-2">
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-4">
+								<h5 class="mb-3 mb-md-0">Your Profile Detail</h5>
+								<h6 class="mb-3 mb-md-0 text-muted mt-1">General information about profile</h6>
+							</div>
+							<div class="col-8">
+								<div class="mb-3">
+									<div class="mb-3">
+										<div class="row mb-3">
+											<div class="col-md-8">
+												<label class="form-label">Name</label>
+												<input
+													type="text"
+													class="form-control"
+													placeholder="Name"
+                                                    [(ngModel)]="systemUserName"
+													formControlName="name"
+													[class.is-invalid]="systemUserForm.get('name')?.hasError('required')"
+												/>
+												<span class="invalid-feedback" *ngIf="systemUserForm.get('name')?.hasError('required')"
+													>Name is required.</span
+												>
+											</div>
+										</div>
+									</div>
+
+                                    <div class="mb-3">
+										<div class="row mb-3">
+											<div class="col-md-8">
+												<label class="form-label">Address</label>
+												<input
+													type="text"
+													class="form-control"
+													placeholder="Address"
+                                                    [(ngModel)]="systemUserAddress"
+													formControlName="address"
+													[class.is-invalid]="systemUserForm.get('address')?.hasError('required')"
+												/>
+												<span class="invalid-feedback" *ngIf="systemUserForm.get('address')?.hasError('required')"
+													>Address is required.</span
+												>
+											</div>
+										</div>
+									</div>
+
+                                    <div class="mb-3">
+										<div class="row mb-3">
+											<div class="col-md-8">
+												<label class="form-label">NIC</label>
+												<input
+													type="text"
+													class="form-control"
+													placeholder="NIC"
+                                                    [(ngModel)]="systemUserNic"
+													formControlName="nic"
+													[class.is-invalid]="systemUserForm.get('nic')?.hasError('required')"
+												/>
+												<span class="invalid-feedback" *ngIf="systemUserForm.get('nic')?.hasError('required')"
+													>NIC is required.</span
+												>
+											</div>
+										</div>
+									</div>
+
+                                    <div class="mb-3">
+										<div class="row mb-3">
+											<div class="col-md-8">
+												<label class="form-label">TP Number</label>
+												<input
+													type="text"
+													class="form-control"
+													placeholder="TP Number"
+                                                    [(ngModel)]="systemUserTpNumber"
+													formControlName="tpNumber"
+													[class.is-invalid]="systemUserForm.get('tpNumber')?.hasError('required')"
+												/>
+												<span class="invalid-feedback" *ngIf="systemUserForm.get('tpNumber')?.hasError('required')"
+													>TP Number is required.</span
+												>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button type="submit" [disabled]="!systemUserForm.valid" class="float-end btn btn-primary me-2">Update</button>
+		</form>
+	</div>
+
+    <div class="row" *ngIf="userRoleType === 'HospitalUser'">
+		<form [formGroup]="hospitalUserForm" (submit)="updateProfileDetails()">
+			<div class="col-12 col-xl-12 grid-margin stretch-card mb-2">
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-4">
+								<h5 class="mb-3 mb-md-0">Your Profile Detail</h5>
+								<h6 class="mb-3 mb-md-0 text-muted mt-1">General information about profile</h6>
+							</div>
+							<div class="col-8">
+								<div class="mb-3">
+									<div class="mb-3">
+										<div class="row mb-3">
+											<div class="col-md-8">
+												<label class="form-label">Name</label>
+												<input
+													type="text"
+													class="form-control"
+													placeholder="Name"
+                                                    [(ngModel)]="hospitalUserName"
+													formControlName="name"
+													[class.is-invalid]="hospitalUserForm.get('name')?.hasError('required')"
+												/>
+												<span class="invalid-feedback" *ngIf="hospitalUserForm.get('name')?.hasError('required')"
+													>Name is required.</span
+												>
+											</div>
+										</div>
+									</div>
+
+                                    <div class="mb-3">
+										<div class="row mb-3">
+											<div class="col-md-8">
+												<label class="form-label">Address</label>
+												<input
+													type="text"
+													class="form-control"
+													placeholder="Address"
+                                                    [(ngModel)]="hospitalUserAddress"
+													formControlName="address"
+													[class.is-invalid]="hospitalUserForm.get('address')?.hasError('required')"
+												/>
+												<span class="invalid-feedback" *ngIf="hospitalUserForm.get('address')?.hasError('required')"
+													>Address is required.</span
+												>
+											</div>
+										</div>
+									</div>
+
+                                    <div class="mb-3">
+										<div class="row mb-3">
+											<div class="col-md-8">
+												<label class="form-label">NIC</label>
+												<input
+													type="text"
+													class="form-control"
+													placeholder="NIC"
+                                                    [(ngModel)]="hospitalUserNic"
+													formControlName="nic"
+													[class.is-invalid]="hospitalUserForm.get('nic')?.hasError('required')"
+												/>
+												<span class="invalid-feedback" *ngIf="hospitalUserForm.get('nic')?.hasError('required')"
+													>NIC is required.</span
+												>
+											</div>
+										</div>
+									</div>
+
+                                    <div class="mb-3">
+										<div class="row mb-3">
+											<div class="col-md-8">
+												<label class="form-label">TP Number</label>
+												<input
+													type="text"
+													class="form-control"
+													placeholder="TP Number"
+                                                    [(ngModel)]="hospitalUserTpNumber"
+													formControlName="tpNumber"
+													[class.is-invalid]="hospitalUserForm.get('tpNumber')?.hasError('required')"
+												/>
+												<span class="invalid-feedback" *ngIf="hospitalUserForm.get('tpNumber')?.hasError('required')"
+													>TP Number is required.</span
+												>
+											</div>
+										</div>
+									</div>
+
+                                    <div class="mb-3">
+										<div class="row mb-3">
+											<div class="col-md-8">
+												<label class="form-label">Hospital Name</label>
+												<input
+													type="text"
+													class="form-control"
+													placeholder="Hospital Name"
+                                                    [(ngModel)]="hospitalUserHospitalName"
+													formControlName="hospitalName"
+													[class.is-invalid]="hospitalUserForm.get('hospitalName')?.hasError('required')"
+												/>
+												<span class="invalid-feedback" *ngIf="hospitalUserForm.get('hospitalName')?.hasError('required')"
+													>Hospital Name is required.</span
+												>
+											</div>
+										</div>
+									</div>
+
+                                    <div class="mb-3">
+										<div class="row mb-3">
+											<div class="col-md-8">
+												<label class="form-label">Hospital Address</label>
+												<input
+													type="text"
+													class="form-control"
+													placeholder="Hospital Address"
+                                                    [(ngModel)]="hospitalUserHospitalAddress"
+													formControlName="hospitalAddress"
+													[class.is-invalid]="hospitalUserForm.get('hospitalAddress')?.hasError('required')"
+													[value]="hospitalUserHospitalAddress"
+												/>
+												<span class="invalid-feedback" *ngIf="hospitalUserForm.get('hospitalAddress')?.hasError('required')"
+													>Hospital Address is required.</span
+												>
+											</div>
+										</div>
+									</div>
+
+                                    <div class="mb-3">
+										<div class="row mb-3">
+											<div class="col-md-8">
+												<label class="form-label">Hospital TP Number</label>
+												<input
+													type="text"
+													class="form-control"
+													placeholder="Hospital TP Number"
+                                                    [(ngModel)]="hospitalUserHospitalTpNumber"
+													formControlName="hospitalTpNumber"
+													[class.is-invalid]="hospitalUserForm.get('hospitalTpNumber')?.hasError('required')"
+													[value]="hospitalUserHospitalTpNumber"
+												/>
+												<span class="invalid-feedback" *ngIf="hospitalUserForm.get('hospitalTpNumber')?.hasError('required')"
+													>Hospital TP Number is required.</span
+												>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button type="submit" [disabled]="!hospitalUserForm.valid" class="float-end btn btn-primary me-2">Update</button>
+		</form>
+	</div>
+
+</div>

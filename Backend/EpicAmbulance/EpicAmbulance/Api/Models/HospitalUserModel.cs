@@ -59,17 +59,15 @@ namespace EpicAmbulance
         [Required]
         public string Address { get; set; } = null!;
 
-        [Required]
         [MaxLength(12)]
-        public string Nic { get; set; } = null!;
+        public string? Nic { get; set; }
 
         [Required]
         [MaxLength(10)]
         [MinLength(10)]
         public string TpNumber { get; set; } = null!;
 
-        [Required]
-        public Guid HospitalId { get; set; }
+        public Guid? HospitalId { get; set; }
 
         // Read only
         public HospitalModel? Hospital { get; set; }

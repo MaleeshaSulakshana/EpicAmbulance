@@ -43,6 +43,12 @@ const routes: Routes = [
         loadChildren: () => import('./views/pages/bookings/bookings.module').then(m => m.BookingsModule),
         // data: {permission: ''}
       },
+      {
+        path: 'profile',
+        // canActivate: [PermissionGuard],
+        loadChildren: () => import('./views/pages/profile/profile.module').then(m => m.ProfileModule),
+        // data: {permission: ''}
+      },
     ]
   },
   {

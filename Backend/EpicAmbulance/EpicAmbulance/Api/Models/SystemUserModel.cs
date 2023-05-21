@@ -67,9 +67,8 @@ namespace EpicAmbulance
         [Required]
         public string Address { get; set; } = null!;
 
-        [Required]
         [MaxLength(12)]
-        public string Nic { get; set; } = null!;
+        public string? Nic { get; set; }
 
         [Required]
         [MaxLength(10)]
