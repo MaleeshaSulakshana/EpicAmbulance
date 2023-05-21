@@ -69,6 +69,8 @@ export class AmbulanceCrewMembersComponent implements OnInit {
     nic: ""
   }
 
+  userRole: string = "";
+  hospitalId: string = "";
 
   constructor(
     private modalService: NgbModal,
@@ -81,9 +83,16 @@ export class AmbulanceCrewMembersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.userRole = localStorage.getItem("userRole")!;
+    if (this.userRole === "HospitalUser") {
+      var userDetails = JSON.parse(localStorage.getItem('userDetails') || '{}');
+
+      this.hospitalId = userDetails.hospitalId ? userDetails.hospitalId : "";
+    }
+
     this.getAmbulanceCrewMembers();
     this.getHospitals();
-    // this.getAmbulances();
 
     this.form = this.fb.group({
       name: [this.selected.name, [Validators.required]],
@@ -168,7 +177,15 @@ export class AmbulanceCrewMembersComponent implements OnInit {
     try {
 
       const hospitals = await this.hospitalsService.getHospital();
-      this.hospitals = hospitals.data;
+
+      if (this.hospitalId != "") {
+
+        var filteredHospitals = hospitals.data.filter((a: any) => a.id == this.hospitalId);
+        this.hospitals = filteredHospitals;
+      } else {
+
+        this.hospitals = hospitals.data;
+      }
 
     } catch (error: any) {
       this.toast.show(error.statusText, 'error');
@@ -180,7 +197,7 @@ export class AmbulanceCrewMembersComponent implements OnInit {
 
       const ambulances = await this.ambulancesService.getAmbulancesByHospitalId(id);
       this.ambulances = ambulances.data;
-      console.log(ambulances.data)
+
     } catch (error: any) {
       this.toast.show(error.statusText, 'error');
     }
@@ -190,7 +207,15 @@ export class AmbulanceCrewMembersComponent implements OnInit {
     try {
 
       const ambulanceCrewMembers = await this.ambulanceCrewMembersService.getAmbulanceCrewMembers();
-      this.ambulanceCrewMembers = ambulanceCrewMembers.data;
+
+      if (this.hospitalId != "") {
+
+        var filteredAmbulanceCrewMembers = ambulanceCrewMembers.data.filter((a: any) => a.hospitalId == this.hospitalId);
+        this.ambulanceCrewMembers = filteredAmbulanceCrewMembers;
+      } else {
+
+        this.ambulanceCrewMembers = ambulanceCrewMembers.data;
+      }
 
     } catch (error: any) {
       this.toast.show(error.statusText, 'error');

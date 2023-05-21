@@ -61,6 +61,8 @@ export class HospitalUsersComponent implements OnInit {
     nic: ""
   }
 
+  userRole: string = "";
+  hospitalId: string = "";
 
   constructor(
     private modalService: NgbModal,
@@ -72,6 +74,14 @@ export class HospitalUsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.userRole = localStorage.getItem("userRole")!;
+    if (this.userRole === "HospitalUser") {
+      var userDetails = JSON.parse(localStorage.getItem('userDetails') || '{}');
+
+      this.hospitalId = userDetails.hospitalId ? userDetails.hospitalId : "";
+    }
+
     this.getHospitalUsers();
     this.getHospitals();
 
@@ -149,7 +159,15 @@ export class HospitalUsersComponent implements OnInit {
     try {
 
       const hospitals = await this.hospitalsService.getHospital();
-      this.hospitals = hospitals.data;
+
+      if (this.hospitalId != "") {
+
+        var filteredHospitals = hospitals.data.filter((a: any) => a.id == this.hospitalId);
+        this.hospitals = filteredHospitals;
+      } else {
+
+        this.hospitals = hospitals.data;
+      }
 
     } catch (error: any) {
       this.toast.show(error.statusText, 'error');
@@ -160,7 +178,15 @@ export class HospitalUsersComponent implements OnInit {
     try {
 
       const hospitalUsers = await this.hospitalUsersService.getHospitalUsers();
-      this.hospitalUsers = hospitalUsers.data;
+
+      if (this.hospitalId != "") {
+
+        var filteredHospitalUsers = hospitalUsers.data.filter((a: any) => a.hospitalId == this.hospitalId);
+        this.hospitalUsers = filteredHospitalUsers;
+      } else {
+
+        this.hospitalUsers = hospitalUsers.data;
+      }
 
     } catch (error: any) {
       this.toast.show(error.statusText, 'error');

@@ -42,6 +42,8 @@ export class BookingsComponent implements OnInit {
     hospital: ""
   }
 
+  userRole: string = "";
+  hospitalId: string = "";
 
   constructor(
     private modalService: NgbModal,
@@ -53,6 +55,14 @@ export class BookingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.userRole = localStorage.getItem("userRole")!;
+    if (this.userRole === "HospitalUser") {
+      var userDetails = JSON.parse(localStorage.getItem('userDetails') || '{}');
+
+      this.hospitalId = userDetails.hospitalId ? userDetails.hospitalId : "";
+    }
+
     this.getBookings();
     this.getAmbulances();
     this.getHospitals();
@@ -118,7 +128,15 @@ export class BookingsComponent implements OnInit {
     try {
 
       const bookings = await this.bookingsService.getBookings();
-      this.bookings = bookings.data;
+
+      if (this.hospitalId != "") {
+
+        var filteredBookings = bookings.data.filter((a: any) => a.hospitalId == this.hospitalId);
+        this.bookings = filteredBookings;
+      } else {
+
+        this.bookings = bookings.data;
+      }
 
     } catch (error: any) {
       this.toast.show(error.statusText, 'error');
@@ -129,7 +147,15 @@ export class BookingsComponent implements OnInit {
     try {
 
       const hospitals = await this.hospitalsService.getHospital();
-      this.hospitals = hospitals.data;
+
+      if (this.hospitalId != "") {
+
+        var filteredHospitals = hospitals.data.filter((a: any) => a.id == this.hospitalId);
+        this.hospitals = filteredHospitals;
+      } else {
+
+        this.hospitals = hospitals.data;
+      }
 
     } catch (error: any) {
       this.toast.show(error.statusText, 'error');
@@ -140,7 +166,15 @@ export class BookingsComponent implements OnInit {
     try {
 
       const ambulances = await this.ambulancesService.getAmbulances();
-      this.ambulances = ambulances.data;
+
+      if (this.hospitalId != "") {
+
+        var filteredAmbulances = ambulances.data.filter((a: any) => a.hospitalId == this.hospitalId);
+        this.ambulances = filteredAmbulances;
+      } else {
+
+        this.ambulances = ambulances.data;
+      }
 
     } catch (error: any) {
       this.toast.show(error.statusText, 'error');
