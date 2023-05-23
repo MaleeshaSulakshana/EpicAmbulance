@@ -41,18 +41,23 @@ namespace EpicAmbulance.Controllers
 
             foreach (var hospital in hospitals)
             {
-                double? distance = 0.0;
-                GeoCoordinate? eCoord = null;
-                if (hospital.Latitude != null && hospital.Longitude != null)
-                {
-                    eCoord = new GeoCoordinate((double)hospital.Latitude, (double)hospital.Longitude);
-                }
+                var availableAmbulanceCount = hospital.Ambulances.Where(a => a.AvailableStatus == true).Count();
 
-                if (sCoord != null && eCoord != null)
+                if (availableAmbulanceCount > 0)
                 {
-                    distance = sCoord.GetDistanceTo(eCoord);
+                    double? distance = 0.0;
+                    GeoCoordinate? eCoord = null;
+                    if (hospital.Latitude != null && hospital.Longitude != null)
+                    {
+                        eCoord = new GeoCoordinate((double)hospital.Latitude, (double)hospital.Longitude);
+                    }
+
+                    if (sCoord != null && eCoord != null)
+                    {
+                        distance = sCoord.GetDistanceTo(eCoord);
+                    }
+                    result.Add(new HospitalModel(hospital, distance));
                 }
-                result.Add(new HospitalModel(hospital, distance));
             }
 
             return result.OrderBy(h => h.DistanceInMeters);
